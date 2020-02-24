@@ -62,4 +62,5 @@ public class LoginSteps {
     public void linkWillBeVisibleOnTopRightCorner(String arg0)  {
         Assert.assertEquals(loginPage.signOutButton(),arg0);
     }
+    
 }
