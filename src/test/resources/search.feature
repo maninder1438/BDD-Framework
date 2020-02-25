@@ -7,13 +7,13 @@ Feature: Search
   @smoke
   Scenario: Search for single product
     Given I am on homepage
-    When I search for product "nike"
-    Then I should be able to see "nike" product
+    When I search for a product of "jbjkbkbkjhkbbhbhbjhk5454"
+    Then I should be able to see "nijhbvjhbvhjjhjh5454ke" product
 
   @regression
   Scenario Outline: Search multi product
     Given I am on homepage
-    When I search for product "<searchItem>"
+    When I search for a product of "<searchItem>"
     Then I should be able to see "<searchItem>" product
 
     Examples:
@@ -21,16 +21,4 @@ Feature: Search
       | puma       |
       | adidas     |
 
-  @smoke
-  Scenario: Verify product rating filter
-    Given I am on homepage
-    When I search for product "Apple MacBook Air 2019"
-    And Select the product rating "5" from the rating filter
-    Then I should be able to see the products of selected rating only
 
-  @smoke
-  Scenario: Verify product price filter
-    Given I am on homepage
-    When I search for product "phone sim free"
-    And  Select the price "£50 - £100" from price filter
-    Then I should be able to see the products having price between "£50 - £100"

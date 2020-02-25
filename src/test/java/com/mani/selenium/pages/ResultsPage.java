@@ -1,6 +1,6 @@
 package com.mani.selenium.pages;
 
-import com.mani.selenium.driver.DriverFactory;
+import com.mani.selenium.driver.DriverManager;
 import com.mani.selenium.utils.Helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultsPage extends DriverFactory {
+public class ResultsPage extends DriverManager {
 
     public String getSearchTitle() {return driver.findElement(By.cssSelector(".search-title h1")).getText().toLowerCase(); }
 

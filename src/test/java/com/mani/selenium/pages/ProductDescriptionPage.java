@@ -1,10 +1,10 @@
 package com.mani.selenium.pages;
 
-import com.mani.selenium.driver.DriverFactory;
+import com.mani.selenium.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
-public class ProductDescriptionPage extends DriverFactory {
+public class ProductDescriptionPage extends DriverManager {
 
     public void addToTrolley() throws InterruptedException {
         Thread.sleep(2500);

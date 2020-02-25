@@ -18,10 +18,7 @@ public class BasketSteps {
     private ProductDescriptionPage productDescriptionPage = new ProductDescriptionPage();
     private TrolleyPage trolleyPage = new TrolleyPage();
 
-    @When("^I search for a product of \"([^\"]*)\"$")
-    public void iSearchForAProductOf(String arg0) throws InterruptedException {
-        homePage.doSearch(arg0);
-    }
+
     private  String actualProduct;
     @And("^Select the random product from product list$")
     public void selectTheRandomProductFromProductList() {
@@ -42,9 +39,9 @@ public class BasketSteps {
 
     private String totalPriceOfSelectedProducts;
     @And("^change the quantity to \"([^\"]*)\"$")
-    public void changeTheQuantityTo(String arg0) throws InterruptedException {
+    public void changeTheQuantityTo(String qty) throws InterruptedException {
         double selectedProductPrice = Double.parseDouble(productDescriptionPage.productPrice());
-        double qtySelected = Double.parseDouble(productDescriptionPage.quantityToSelect(arg0));
+        double qtySelected = Double.parseDouble(productDescriptionPage.quantityToSelect(qty));
         totalPriceOfSelectedProducts = String.format("%.2f", selectedProductPrice * qtySelected);
     }
 
@@ -70,9 +67,9 @@ public class BasketSteps {
     }
 
     @Then("^I should be able to see \"([^\"]*)\" products in total in the basket$")
-    public void iShouldBeAbleToSeeProductsInTotalInTheBasket(byte arg0) {
+    public void iShouldBeAbleToSeeProductsInTotalInTheBasket(byte qty) {
         int numberOfProductsInBasket = trolleyPage.numberOfProductsinTrolley();
-        assertEquals(arg0, numberOfProductsInBasket);
+        assertEquals(qty, numberOfProductsInBasket);
     }
 
     @And("^The price should be equal to the total of products in the basket$")

@@ -1,9 +1,9 @@
 package com.mani.selenium.pages;
 
-import com.mani.selenium.driver.DriverFactory;
+import com.mani.selenium.driver.DriverManager;
 import org.openqa.selenium.By;
 
-public class LoginPage extends DriverFactory {
+public class LoginPage extends DriverManager {
 
     public String accountLoginPage() {
         driver.findElement(By.cssSelector("a[data-test=\"account\"]")).click();

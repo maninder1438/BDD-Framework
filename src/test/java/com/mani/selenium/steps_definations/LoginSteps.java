@@ -12,12 +12,6 @@ import static org.hamcrest.Matchers.endsWith;
 public class LoginSteps {
     private LoginPage loginPage = new LoginPage();
 
-
-    @When("^I click on account button$")
-    public void i_click_on_account_button(){
-        loginPage.accountLoginPage();
-    }
-
     @Then("^I should be able to see account login page$")
     public void i_should_be_able_to_see_account_login_page() throws InterruptedException {
         Thread.sleep(2000);
@@ -26,15 +20,10 @@ public class LoginSteps {
     }
 
     @And("^the message should be visible \"([^\"]*)\"$")
-    public void theMessageShouldBeVisible(String arg0) throws InterruptedException {
+    public void theMessageShouldBeVisible(String message) throws InterruptedException {
         Thread.sleep(3000);
         String actualMessage = loginPage.accountLoginPageMessage();
-        Assert.assertTrue(actualMessage.contains(arg0));
-    }
-
-    @Given("^I am on account login page$")
-    public void iAmOnAccountLoginPage() {
-        loginPage.accountLoginPage();
+        Assert.assertTrue(actualMessage.contains(message));
     }
 
     @When("^I enter my valid email address \"([^\"]*)\"$")
@@ -59,8 +48,8 @@ public class LoginSteps {
         Assert.assertEquals(expectedFirstName,actualFirstName);
     }
     @And("^\"([^\"]*)\" link will be visible on top right corner$")
-    public void linkWillBeVisibleOnTopRightCorner(String arg0)  {
-        Assert.assertEquals(loginPage.signOutButton(),arg0);
+    public void linkWillBeVisibleOnTopRightCorner(String signOutLink)  {
+        Assert.assertEquals(loginPage.signOutButton(),signOutLink);
     }
-    
+
 }

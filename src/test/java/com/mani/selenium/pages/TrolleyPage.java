@@ -1,12 +1,12 @@
 package com.mani.selenium.pages;
 
-import com.mani.selenium.driver.DriverFactory;
+import com.mani.selenium.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class TrolleyPage extends DriverFactory {
+public class TrolleyPage extends DriverManager {
 
     public String getProductNameInTrolley() throws InterruptedException {
         Thread.sleep(2500);
