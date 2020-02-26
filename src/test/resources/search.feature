@@ -7,8 +7,8 @@ Feature: Search
   @smoke
   Scenario: Search for single product
     Given I am on homepage
-    When I search for a product of "jbjkbkbkjhkbbhbhbjhk5454"
-    Then I should be able to see "nijhbvjhbvhjjhjh5454ke" product
+    When I search for a product of "nike"
+    Then I should be able to see "nike" product
 
   @regression
   Scenario Outline: Search multi product
@@ -16,9 +16,11 @@ Feature: Search
     When I search for a product of "<searchItem>"
     Then I should be able to see "<searchItem>" product
 
-    Examples:
-      | searchItem |
-      | puma       |
-      | adidas     |
+   Examples:
+      |     searchItem  |
+      |      puma       |
+      |     adidas      |
+      |    smart watch  |
+
 
 

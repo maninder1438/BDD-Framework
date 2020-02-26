@@ -31,5 +31,4 @@ public class CommonSteps {
     public void iAmOnAccountLoginPage() {
         loginPage.accountLoginPage();
     }
-
 }

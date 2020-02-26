@@ -11,7 +11,7 @@ Feature: Login
     Then I should be able to see account login page
     And the message should be visible "Do we know you?"
 
-  @smoke
+  @smoke @manual
   Scenario: Verify that the user can login with valid login credentials
     Given I am on account login page
     When  I enter my valid email address "maninder1438@gmail.com"

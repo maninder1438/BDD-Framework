@@ -2,12 +2,8 @@ package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
 import com.mani.selenium.utils.Helpers;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +25,9 @@ public class ResultsPage extends DriverManager {
 
     @FindBy(css = "label[name=\"price\"]")
     private List<WebElement> priceFilter;
+
     @FindBy(css = "div[data-facet=\"price\"]> button.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")
     private WebElement priceFilterShowMore;
-
 
     public String getSearchTitle() {
         return searchTitle.getText().toLowerCase();
@@ -59,11 +55,9 @@ public class ResultsPage extends DriverManager {
 
     public List<Double> getAllProductPrices() {
 
-
         List<Double> productPriceList = new ArrayList<>();
 
         for (WebElement indProductPrice : productPrice) {
-
             double actual = Double.parseDouble(indProductPrice.getText().replace("£", ""));
             productPriceList.add(actual);
         }
@@ -71,7 +65,6 @@ public class ResultsPage extends DriverManager {
     }
 
     public String selectAnyProduct() {
-
         int productSize = productNameList.size();
         int randomNumber = new Helpers().randomNumberGenerator(productSize);
         WebElement selectedElement = productNameList.get(randomNumber);
@@ -79,7 +72,6 @@ public class ResultsPage extends DriverManager {
         selectedElement.click();
         return selectedProductName;
     }
-
 
     public void selectProductRatingFilter(String selectRating) {
 //        new WebDriverWait(driver, 10)
@@ -90,25 +82,23 @@ public class ResultsPage extends DriverManager {
                 review.click();
                 break;
             }
-
         }
     }
-
 
     public void selectPriceFilter(String selectPrice) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"), 4));
-              priceFilterShowMore.click();
-            for (WebElement review : priceFilter) {
-                String availableFilter = review.getAttribute("value");
+        priceFilterShowMore.click();
+        for (WebElement review : priceFilter) {
+            String availableFilter = review.getAttribute("value");
 
-                if (availableFilter.equalsIgnoreCase(selectPrice)) {
-                    review.click();
-                    sleep(6000);
-                    break;
-                }
+            if (availableFilter.equalsIgnoreCase(selectPrice)) {
+                review.click();
+                sleep(6000);
+                break;
             }
         }
-
     }
+
+}
 

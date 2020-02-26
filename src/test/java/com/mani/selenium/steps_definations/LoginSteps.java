@@ -2,7 +2,6 @@ package com.mani.selenium.steps_definations;
 
 import com.mani.selenium.pages.LoginPage;
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
@@ -22,7 +21,7 @@ public class LoginSteps {
     @And("^the message should be visible \"([^\"]*)\"$")
     public void theMessageShouldBeVisible(String message) throws InterruptedException {
         Thread.sleep(3000);
-        String actualMessage = loginPage.accountLoginPageMessage();
+        String actualMessage = loginPage.accountLoginPageMessageBeforeLogin();
         Assert.assertTrue(actualMessage.contains(message));
     }
 
@@ -43,7 +42,7 @@ public class LoginSteps {
 
     @Then("^I should be logged in successfully & able to see my first name \"([^\"]*)\" on top right corner$")
     public void iShouldBeLoggedInSuccessfullyAbleToSeeMyFirstNameOnTopRightCorner(String actualFirstName) throws InterruptedException {
-        Thread.sleep(16000);
+
         String expectedFirstName = loginPage.getFirstNameAfterLogin();
         Assert.assertEquals(expectedFirstName,actualFirstName);
     }

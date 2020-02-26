@@ -1,8 +1,6 @@
 package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
