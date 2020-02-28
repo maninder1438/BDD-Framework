@@ -1,35 +1,52 @@
 package com.mani.selenium.pages;
 
-import com.mani.selenium.driver.DriverFactory;
-import org.openqa.selenium.By;
+import com.mani.selenium.driver.DriverManager;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class ProductDescriptionPage extends DriverFactory {
+public class ProductDescriptionPage extends DriverManager {
 
-    public void addToTrolley() throws InterruptedException {
-        Thread.sleep(2500);
-        driver.findElement(By.cssSelector("button[data-test='component-att-button']")).click();
-    }
+    @FindBy(css = "button[data-test='component-att-button']")
+    private WebElement addToTrolleyButton;
 
-    public void continueShopping() throws InterruptedException {
-        Thread.sleep(5000);
-        driver.findElement(By.cssSelector("button[data-test=\"component-att-button-continue\"]")).click();
-    }
+    @FindBy(css = "button[data-test='component-att-button-continue']")
+    private WebElement continueShoppingButton;
 
-    public void goToTrolley() throws InterruptedException {
-        Thread.sleep(6000);
-        driver.findElement(By.cssSelector(".xs-row a[data-test='component-att-button-basket']")).click();
-    }
+    @FindBy(css = ".xs-row a[data-test='component-att-button-basket']")
+    private WebElement goToTrolleyButton;
 
-    public String quantityToSelect(String qty) throws InterruptedException {
-        Thread.sleep(2000);
-        new Select(driver.findElement(By.cssSelector("select[id=\"add-to-trolley-quantity\"]"))).selectByVisibleText(qty);
+    @FindBy(css = "select[id='add-to-trolley-quantity']")
+    private WebElement selectQuantityButton;
+
+    @FindBy(css = "li.price.product-price-primary h2")
+    private WebElement priceOfProduct;
+
+    @FindBy (css = "div[data-test='heading-ratings']")
+    private WebElement ratingOfProduct;
+
+    @FindBy(css = ".product-description-content-text")
+    private WebElement productDescriptionText;
+
+    public void addToTrolley() {sleep(2000);addToTrolleyButton.click();}
+
+    public void continueShopping() {sleep(3000);continueShoppingButton.click();}
+
+    public void goToTrolley() {sleep(3000);goToTrolleyButton.click();}
+
+    public String quantityToSelect(String qty) {
+        new Select(selectQuantityButton).selectByVisibleText(qty);
         return qty;
     }
-
-    public String productPrice() throws InterruptedException {
-        Thread.sleep(4000);
-        String price = driver.findElement(By.cssSelector("li.price.product-price-primary h2")).getText().replace("£", "");
+    public Double productPrice()  {
+         Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
         return price;
+    }
+    public Double getProductRating(){
+         Double rating = Double.parseDouble(ratingOfProduct.getAttribute("data-star-rating"));
+        return rating;
+    }
+    public String getProductDescriptionText(){
+           return productDescriptionText.getText().toLowerCase();
     }
 }

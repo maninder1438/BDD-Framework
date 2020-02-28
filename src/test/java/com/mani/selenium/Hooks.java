@@ -1,11 +1,11 @@
 package com.mani.selenium;
 
-import com.mani.selenium.driver.DriverFactory;
+import com.mani.selenium.driver.DriverManager;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public class Hooks {
-    DriverFactory factory = new DriverFactory();
+    DriverManager factory = new DriverManager();
 
     @Before
     public void setUp() {
@@ -13,6 +13,7 @@ public class Hooks {
         // TODO: 2020-02-08 Remove url from code
         factory.navigateTo("https://www.argos.co.uk");
         factory.maxiBrowser();
+        factory.applyImpcitWait();
     }
 
       @After
