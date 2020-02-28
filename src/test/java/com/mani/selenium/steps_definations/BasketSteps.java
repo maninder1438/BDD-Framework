@@ -6,7 +6,6 @@ import com.mani.selenium.pages.ResultsPage;
 import com.mani.selenium.pages.TrolleyPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
@@ -18,7 +17,6 @@ public class BasketSteps {
     private ResultsPage resultsPage = new ResultsPage();
     private ProductDescriptionPage productDescriptionPage = new ProductDescriptionPage();
     private TrolleyPage trolleyPage = new TrolleyPage();
-
 
     private String actualProduct;
 
@@ -58,7 +56,7 @@ public class BasketSteps {
     private double selectedProductPrice1;
 
     @And("^add the selected product to basket and click continue shopping$")
-    public void addTheSelectedProductToBasketAndClickContinueShopping() throws InterruptedException {
+    public void addTheSelectedProductToBasketAndClickContinueShopping() {
         selectedProductPrice1 = productDescriptionPage.productPrice();
         productDescriptionPage.addToTrolley();
         productDescriptionPage.continueShopping();
@@ -67,7 +65,7 @@ public class BasketSteps {
     private double selectedProductPrice2;
 
     @And("^add the selected product to basket and click goto trolley$")
-    public void addTheSelectedProductToBasketAndClickGotoTrolley() throws InterruptedException {
+    public void addTheSelectedProductToBasketAndClickGotoTrolley() {
         selectedProductPrice2 = productDescriptionPage.productPrice();
         productDescriptionPage.addToTrolley();
         productDescriptionPage.goToTrolley();
@@ -125,9 +123,5 @@ public class BasketSteps {
     public void verifyThatSelectedProductHasRatingOrMore(double actualRating) {
         double expectedRating = productDescriptionPage.getProductRating();
         assertThat(expectedRating, is(greaterThanOrEqualTo(actualRating)));
-
-
     }
-
-
 }

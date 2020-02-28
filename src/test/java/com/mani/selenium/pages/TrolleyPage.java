@@ -17,7 +17,7 @@ public class TrolleyPage extends DriverManager {
     @FindBy(css = ".ProductCard__productLinePrice__3QC7V")
     private List <WebElement> numberOfProductsInTrolley;
 
-    @FindBy(css = "div[data-e2e=\"basket-total-price\"]")
+    @FindBy(css = "div[data-e2e='basket-total-price']")
     private WebElement trollyTotalPrice;
 
     @FindBy (css = ".xs-hidden #basket-FulfilmentSelectorForm")
@@ -26,31 +26,31 @@ public class TrolleyPage extends DriverManager {
     @FindBy (css = ".xs-hidden #basket-FulfilmentSelectorForm-collectButton")
     private WebElement collectionButton;
 
-    @FindBy (css = "button[data-el=\"store-selector-result__select-store-button--4215\"]")
+    @FindBy (css = "button[data-el='store-selector-result__select-store-button--4215']")
     private  WebElement selectThisStoreButton;
 
     @FindBy (css = ".Buttonstyles__Button-q93iwm-2.EhVk > .FulfilmentConfirmationForm__extendedText__2t8LV")
     private WebElement continueWithCollectionButton;
 
-    @FindBy (css = "a[data-test=\"pay-in-store-button\"]")
+    @FindBy (css = "a[data-test='pay-in-store-button']")
     private WebElement reserveAndPayInStoreButton;
 
-    @FindBy (css = "input[name=\"reserveDetails.email\"]")
+    @FindBy (css = "input[name='reserveDetails.email']")
     private WebElement reserveDetailsEmail;
 
     @FindBy (css = "button[data-test='reserve-continue-button']")
     private WebElement reserveContinueButton;
 
-    @FindBy (css = "button[data-test=\"reserve-now-button\"]")
+    @FindBy (css = "button[data-test='reserve-now-button']")
     private WebElement reserveNowButton;
 
     @FindBy (css = "h1[data-test='reservation-confirmation-message']")
     private WebElement reservationConfirmationMsg;
 
-    @FindBy (css = "span[data-e2e=\"product-quantity\"]")
+    @FindBy (css = "span[data-e2e='product-quantity']")
     private WebElement quantityReserved;
 
-    @FindBy (css = "div[data-test=\"basket-total\"]")
+    @FindBy (css = "div[data-test='basket-total']")
     private WebElement priceOfReservedProducts;
 
     public String getProductNameInTrolley() {
@@ -73,7 +73,7 @@ public class TrolleyPage extends DriverManager {
     }
 
     public void enterPostcodeForProductAvailability(){
-        enterPostcodeForProductAvailability.sendKeys("UB3 4QF");
+        enterPostcodeForProductAvailability.sendKeys("TW5 0PB");
     }
     public void collectionButton(){
         collectionButton.click();
@@ -98,12 +98,12 @@ public class TrolleyPage extends DriverManager {
     }
     public String getReservationConfirmationMsg(){
         String msg= reservationConfirmationMsg.getText();
-        sleep(10000);
+        sleep(8000);
         return msg;
     }
     public String getQuantityOfReservedProdcuts(){
         String numberOfReservedProducts = quantityReserved.getText();
-        sleep(5000);
+        sleep(3000);
         return numberOfReservedProducts;
     }
     public String getTotalPriceOfReservedProducts(){

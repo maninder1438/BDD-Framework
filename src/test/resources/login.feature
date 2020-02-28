@@ -17,6 +17,6 @@ Feature: Login
     When  I enter my valid email address "maninder1438@gmail.com"
     And   I enter my valid password "password123456"
     And   Click sign in securely button
-    Then  I should be logged in successfully & able to see my first name "MANINDER" on top right corner
-    And   "Sign out" link will be visible on top right corner
+    Then  I should be logged in successfully & able to see my first name "MANINDER"
+    And   "Sign out" link will be visible
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends DriverManager {
 
-    @FindBy (css = "a[data-test=\"account\"]")
+    @FindBy (css = "a[data-test='account']")
     private WebElement accountButton;
 
     @FindBy(css = ".panel-header h2")
@@ -31,12 +31,14 @@ public class LoginPage extends DriverManager {
     private WebElement signOutButton;
 
     public String accountLoginPage() {
+        sleep(2000);
         accountButton.click();
         String url = driver.getCurrentUrl();
         return url;
     }
 
     public String accountLoginPageMessageBeforeLogin(){
+        sleep(3000);
         String message = accountPageTitleMessageBeforeLogin.getText();
         return message;
     }
@@ -45,12 +47,13 @@ public class LoginPage extends DriverManager {
         return message;
     }
     public void enterEmailAddress(String email){
+        sleep(3000);
         emailBox.sendKeys(email);
      }
     public void enterPassword(String password){
         passwordBox.sendKeys(password);
     }
-    public void signInSecurely() throws InterruptedException {
+    public void signInSecurely() {
         sleep(4000);
         signInButton.click();
     }
