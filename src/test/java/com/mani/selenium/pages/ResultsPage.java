@@ -1,135 +1,91 @@
 package com.mani.selenium.pages;
 
-import com.mani.selenium.driver.DriverManager;
+import com.mani.selenium.driver.DriverFactory;
 import com.mani.selenium.utils.Helpers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultsPage extends DriverManager {
-    @FindBy(css = ".search-title h1")
-    private WebElement searchTitle;
+public class ResultsPage extends DriverFactory {
 
-    @FindBy(css = "a[data-test='component-product-card-title']")
-    private List<WebElement> productNameList;
-
-    @FindBy(css = "div[data-test='component-ratings']")
-    private List<WebElement> ratingStar;
-
-    @FindBy(css = ".findability-facet__rating-label")
-    private List<WebElement> ratingWebElements;
-
-    @FindBy(css = "div[data-facet='customer rating']")
-    private WebElement customerRatingDropdown;
-
-    @FindBy(css = ".ProductCardstyles__PriceText-l8f8q8-14.gHrEdF")
-    private List<WebElement> productPrice;
-
-    @FindBy(css = "label[name='price']")
-    private List<WebElement> priceFilter;
-
-    @FindBy(css = "div[data-facet='price']> button.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")
-    private WebElement priceFilterShowMore;
-
-    @FindBy(css = "label[name='brands']")
-    private List<WebElement> brandFilter;
-
-    public String getSearchTitle() {
-        return searchTitle.getText().toLowerCase();
-    }
+    public String getSearchTitle() {return driver.findElement(By.cssSelector(".search-title h1")).getText().toLowerCase(); }
 
     public List<String> getAllProductNames() {
         List<String> productNamesList = new ArrayList<>();
-        for (WebElement indProduct : productNameList) {
+        List<WebElement> productWebElements = productNameList();
+        for (WebElement indProduct : productWebElements) {
             String actual = indProduct.getText();
             productNamesList.add(actual);
         }
         return productNamesList;
     }
 
-    public List<Double> getAllProductRatings() {
-        sleep(5000);
-        List<Double> productRatingList = new ArrayList<>();
-        for (WebElement rating : ratingStar) {
-            String currentRatingInString = rating.getAttribute("data-star-rating");
-            Double currentRatingInDouble = Double.parseDouble(currentRatingInString);
-            productRatingList.add(currentRatingInDouble);
+    public List<String> getAllProductRatings() {
+        List<String> productRatingList = new ArrayList<>();
+        List<WebElement> productWebElements = productRatingList();
+        for (WebElement indProduct : productWebElements) {
+            String currentRating = indProduct.getAttribute("data-star-rating");
+            productRatingList.add(currentRating);
         }
         return productRatingList;
     }
 
     public List<Double> getAllProductPrices() {
         List<Double> productPriceList = new ArrayList<>();
-        for (WebElement indProductPrice : productPrice) {
-            double actual = Double.parseDouble(indProductPrice.getText().replace("£", ""));
+        List<WebElement> productWebElementsPrice = productPriceList();
+        for (WebElement indProductPrice : productWebElementsPrice) {
+            double actual = Double.parseDouble(indProductPrice.getText().replace("£",""));
             productPriceList.add(actual);
         }
         return productPriceList;
     }
 
     public String selectAnyProduct() {
-        int productSize = productNameList.size();
+        List<WebElement> productWebElements = productNameList();
+        int productSize = productWebElements.size();
         int randomNumber = new Helpers().randomNumberGenerator(productSize);
-        WebElement selectedElement = productNameList.get(randomNumber);
+        WebElement selectedElement = productWebElements.get(randomNumber);
         String selectedProductName = selectedElement.getText();
         selectedElement.click();
         return selectedProductName;
     }
 
-    public void selectProductRatingFilter(String selectRating) {
-//        new WebDriverWait(driver, 10)
-//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-        customerRatingDropdown.click();
-        sleep(2000);
-        for (WebElement review : ratingWebElements) {
-            String availableFilter = review.getText();
-            if (availableFilter.equalsIgnoreCase(selectRating)) {
-                review.click();
-                break;
-            }
-        }
+    private List<WebElement> productNameList() {
+        List<WebElement> productWebElements = driver.findElements(By.cssSelector("a[data-test='component-product-card-title']"));
+        return productWebElements;
     }
 
-    public void selectPriceFilter(String selectPrice) {
-        /**below explicit is not working**/
-//        new WebDriverWait(driver, 10)
-//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"), 4));
-        /**need to ask how to run this faster**/
-        if (priceFilter.size() == 0) {
-            throw new RuntimeException("Sorry, no product available with price " + priceFilter);
-        }
+    private List<WebElement> productRatingList() {
+        List<WebElement> productWebElements = driver.findElements(By.cssSelector("div[data-test=\"component-ratings\"]"));
+        return productWebElements;
+    }
+    private List<WebElement> productPriceList() {
+        List<WebElement> productWebElements = driver.findElements(By.cssSelector(".ProductCardstyles__PriceText-l8f8q8-14.gHrEdF"));
+        return productWebElements;
+    }
+    public String selectProductRatingFilter(String selectRating) throws InterruptedException {
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector("div[data-facet=\"customer rating\"]")).click();
+        Thread.sleep(4000);
+       try {
+           driver.findElement(By.cssSelector("label[data-e2e^=\"" + selectRating + "\"]")).click();
+       }
+       catch(Exception ex){
+           throw new RuntimeException("No Product Found with Rating " + selectRating);
+       }
+        return selectRating;
+    }
+
+    public String selectPriceFilter(String selectPrice) throws InterruptedException {
+         Thread.sleep(4000);
         try {
-            if (priceFilterShowMore.isDisplayed()) {
-                priceFilterShowMore.click();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            driver.findElement(By.cssSelector("label[data-filter-id=\"" + selectPrice + "\"]")).click();
         }
-        sleep(3000);
-        for (WebElement review : priceFilter) {
-            String availableFilter = review.getAttribute("value");
-            if (availableFilter.equalsIgnoreCase(selectPrice)) {
-                review.click();
-                sleep(5000);
-                break;
-            }
+        catch(Exception ex){
+            throw new RuntimeException("No Product Found with selected Price Filter " + selectPrice);
         }
-    }
-
-    public void selectBrandFilter(String selectBrand) {
-//        new WebDriverWait(driver, 10)
-//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-        for (WebElement review : brandFilter) {
-            String availableFilter = review.getAttribute("value");
-            if (availableFilter.equalsIgnoreCase(selectBrand)) {
-                review.click();
-                sleep(5000);
-                break;
-            }
-        }
+        return selectPrice;
     }
 }
-
-
-

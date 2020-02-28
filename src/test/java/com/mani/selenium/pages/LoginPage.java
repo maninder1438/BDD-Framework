@@ -1,69 +1,43 @@
 package com.mani.selenium.pages;
 
-import com.mani.selenium.driver.DriverManager;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import com.mani.selenium.driver.DriverFactory;
+import org.openqa.selenium.By;
 
-public class LoginPage extends DriverManager {
-
-    @FindBy (css = "a[data-test='account']")
-    private WebElement accountButton;
-
-    @FindBy(css = ".panel-header h2")
-    private WebElement accountPageTitleMessageBeforeLogin;
-
-    @FindBy(css = ".Title__container__2arEZ >p")
-    private WebElement accountPageTitleMessageAfterLogin;
-
-    @FindBy(css = "#email-address")
-    private WebElement emailBox;
-
-    @FindBy(css = "#current-password")
-    private WebElement passwordBox;
-
-    @FindBy(css = "button[data-bdd-test-id='yourEmailSubmitButton']")
-    private WebElement signInButton;
-
-    @FindBy(css = "span[class='_2WxI4']")
-    private WebElement firstnameAfterLogin;
-
-    @FindBy(css = ".Bh-zw")
-    private WebElement signOutButton;
+public class LoginPage extends DriverFactory {
 
     public String accountLoginPage() {
-        sleep(2000);
-        accountButton.click();
+        driver.findElement(By.cssSelector("a[data-test=\"account\"]")).click();
         String url = driver.getCurrentUrl();
         return url;
     }
 
-    public String accountLoginPageMessageBeforeLogin(){
-        sleep(3000);
-        String message = accountPageTitleMessageBeforeLogin.getText();
+    public String accountLoginPageMessage(){
+        String message = driver.findElement(By.cssSelector(".panel-header h2")).getText();
         return message;
     }
-    public String accountLoginPageMessageAfterLogin(){
-        String message = accountPageTitleMessageAfterLogin.getText();
+    public String accountLoggedInMessage(){
+        String message = driver.findElement(By.cssSelector(".Title__container__2arEZ >p")).getText();
         return message;
     }
-    public void enterEmailAddress(String email){
-        sleep(3000);
-        emailBox.sendKeys(email);
-     }
-    public void enterPassword(String password){
-        passwordBox.sendKeys(password);
+    public String enterEmailAddress(String email){
+        driver.findElement(By.cssSelector("#email-address")).sendKeys(email);
+        return email;
     }
-    public void signInSecurely() {
-        sleep(4000);
-        signInButton.click();
+    public String enterPassword(String password){
+        driver.findElement(By.cssSelector("#current-password")).sendKeys(password);
+        return password;
     }
-    public String getFirstNameAfterLogin() {
-        sleep(30000);
-        String firstName = firstnameAfterLogin.getText();
+    public void signInSecurely() throws InterruptedException {
+        Thread.sleep(3000);
+        driver.findElement(By.cssSelector("button[data-bdd-test-id=\"yourEmailSubmitButton\"]")).click();
+    }
+    public String getFirstNameAfterLogin() throws InterruptedException {
+        Thread.sleep(4000);
+        String firstName = driver.findElement(By.cssSelector("span[class=\"_2WxI4\"]")).getText();
         return firstName;
     }
     public String signOutButton(){
-        String signOut = signOutButton.getText();
+        String signOut = driver.findElement(By.cssSelector(".Bh-zw")).getText();
         return signOut;
     }
 }

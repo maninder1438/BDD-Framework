@@ -5,29 +5,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.PageFactory;
-
-import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
 
-    public DriverFactory(){
-        PageFactory.initElements(driver,this);
-    }
-
-
     public static WebDriver driver;
+
+    // TODO: 2020-02-08 pass from outside
     private String browser = "";
 
     public void openBrowser() {
         switch (browser) {
-            case "firefox":
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
             case "ie":
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
+                break;
+            case "firfox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
                 break;
             default:
                 WebDriverManager.chromedriver().setup();
@@ -35,27 +29,16 @@ public class DriverFactory {
         }
     }
 
-    public void maxBrowser() {
-        driver.manage().window().maximize();
-    }
 
-    public void applyImpcitWait() {
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-    }
-
-    public void navigateTo(String url) {
+    public void navigateTo(String url){
         driver.get(url);
     }
 
-    public void closeBrowser() {
-        driver.quit();
+    public void maxiBrowser(){
+        driver.manage().window().maximize();
     }
 
-    public void sleep(int ms){
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void closeBrowser(){
+        driver.quit();
     }
 }

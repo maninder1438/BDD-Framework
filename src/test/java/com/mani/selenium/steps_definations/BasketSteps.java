@@ -6,10 +6,10 @@ import com.mani.selenium.pages.ResultsPage;
 import com.mani.selenium.pages.TrolleyPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class BasketSteps {
 
@@ -18,63 +18,61 @@ public class BasketSteps {
     private ProductDescriptionPage productDescriptionPage = new ProductDescriptionPage();
     private TrolleyPage trolleyPage = new TrolleyPage();
 
-    private String actualProduct;
-
+    @When("^I search for a product of \"([^\"]*)\"$")
+    public void iSearchForAProductOf(String arg0) throws InterruptedException {
+        homePage.doSearch(arg0);
+    }
+    private  String actualProduct;
     @And("^Select the random product from product list$")
     public void selectTheRandomProductFromProductList() {
-        actualProduct = resultsPage.selectAnyProduct();
+        actualProduct =resultsPage.selectAnyProduct();
     }
-
-    @And("^Add the selected product to basket$")
-    public void AddTheSelectedProductToBasket() {
+    @And("^add the selected product to basket$")
+    public void addTheSelectedProductToBasket() throws InterruptedException {
         productDescriptionPage.addToTrolley();
         productDescriptionPage.goToTrolley();
     }
 
     @Then("^I should be able to see the same selected product in the basket$")
-    public void iShouldBeAbleToSeeTheSameSelectedProductInTheBasket() {
-
+    public void iShouldBeAbleToSeeTheSameSelectedProductInTheBasket() throws InterruptedException {
+        Thread.sleep(5000);
         String expected = trolleyPage.getProductNameInTrolley();
         assertThat(expected, is(equalToIgnoringCase(actualProduct)));
     }
 
     private String totalPriceOfSelectedProducts;
-
     @And("^change the quantity to \"([^\"]*)\"$")
-    public void changeTheQuantityTo(String qty) {
-        double qtySelected = Double.parseDouble(productDescriptionPage.quantityToSelect(qty));
-        double selectedProductPrice = productDescriptionPage.productPrice();
+    public void changeTheQuantityTo(String arg0) throws InterruptedException {
+        double selectedProductPrice = Double.parseDouble(productDescriptionPage.productPrice());
+        double qtySelected = Double.parseDouble(productDescriptionPage.quantityToSelect(arg0));
         totalPriceOfSelectedProducts = String.format("%.2f", selectedProductPrice * qtySelected);
     }
 
     @Then("^I should be able to see the correct price in the basket$")
     public void iShouldBeAbleToSeeTheCorrectPriceInTheBasket() {
-        String totalPriceOfBasketProducts = trolleyPage.getProductPriceInTrolley();
+        String totalPriceOfBasketProducts = trolleyPage.getProductPriceInTrolley().replace("£", "");
         assertThat(totalPriceOfSelectedProducts, is(equalToIgnoringCase(totalPriceOfBasketProducts)));
     }
 
-    private double selectedProductPrice1;
-
+    private  double selectedProductPrice1;
     @And("^add the selected product to basket and click continue shopping$")
-    public void addTheSelectedProductToBasketAndClickContinueShopping() {
-        selectedProductPrice1 = productDescriptionPage.productPrice();
+    public void addTheSelectedProductToBasketAndClickContinueShopping() throws InterruptedException {
+        selectedProductPrice1 = Double.parseDouble(productDescriptionPage.productPrice());
         productDescriptionPage.addToTrolley();
         productDescriptionPage.continueShopping();
     }
-
-    private double selectedProductPrice2;
-
+    private  double selectedProductPrice2;
     @And("^add the selected product to basket and click goto trolley$")
-    public void addTheSelectedProductToBasketAndClickGotoTrolley() {
-        selectedProductPrice2 = productDescriptionPage.productPrice();
+    public void addTheSelectedProductToBasketAndClickGotoTrolley() throws InterruptedException {
+        selectedProductPrice2 = Double.parseDouble(productDescriptionPage.productPrice());
         productDescriptionPage.addToTrolley();
         productDescriptionPage.goToTrolley();
     }
 
     @Then("^I should be able to see \"([^\"]*)\" products in total in the basket$")
-    public void iShouldBeAbleToSeeProductsInTotalInTheBasket(byte qty) {
+    public void iShouldBeAbleToSeeProductsInTotalInTheBasket(byte arg0) {
         int numberOfProductsInBasket = trolleyPage.numberOfProductsinTrolley();
-        assertEquals(qty, numberOfProductsInBasket);
+        assertEquals(arg0, numberOfProductsInBasket);
     }
 
     @And("^The price should be equal to the total of products in the basket$")
@@ -82,46 +80,5 @@ public class BasketSteps {
         String subTotalActual = String.format("%.2f", selectedProductPrice1 + selectedProductPrice2);
         String subTotalExpected = trolleyPage.trolleyTotalProductPrice();
         assertThat(subTotalActual, is(equalToIgnoringCase(subTotalExpected)));
-    }
-
-    @And("^Reserve the item to collect from store$")
-    public void reserveTheItemToCollectFromStore() {
-        trolleyPage.enterPostcodeForProductAvailability();
-        trolleyPage.collectionButton();
-        trolleyPage.selectThisStore();
-        trolleyPage.continueWithCollection();
-        trolleyPage.reserveAndPayInStore();
-        trolleyPage.reserveDetailsEmail();
-        trolleyPage.reserveContinueButton();
-        trolleyPage.reserveNowButton();
-    }
-
-    @Then("^I should be able to see the reservation confirmation$")
-    public void iShouldBeAbleToSeeTheReservationConfirmation() {
-        assertTrue(trolleyPage.getReservationConfirmationMsg().equalsIgnoreCase("Your reservation is complete")
-                || trolleyPage.getReservationConfirmationMsg().equalsIgnoreCase("Your reservation is ready to collect"));
-    }
-
-    @And("^The selected quantity should be \"([^\"]*)\" on reservation confirmation$")
-    public void theSelectedQuantityShouldBeOnReservationConfirmation(String qty) {
-        assertThat(trolleyPage.getQuantityOfReservedProdcuts(), is(equalToIgnoringCase(qty)));
-    }
-
-    @And("^The total price should be correct$")
-    public void theTotalPriceShouldBeCorrect() {
-        assertThat(trolleyPage.getTotalPriceOfReservedProducts(), is(equalToIgnoringCase(totalPriceOfSelectedProducts)));
-    }
-
-    @And("^Verify that selected product has brand name\"([^\"]*)\"$")
-    public void verifyThatSelectedProductHasBrandName(String actualBrandName) {
-        String expectedBrandName = productDescriptionPage.getProductDescriptionText();
-
-        assertThat(expectedBrandName, containsString(actualBrandName.toLowerCase()));
-    }
-
-    @And("^Verify that selected product has rating\"([^\"]*)\" or more$")
-    public void verifyThatSelectedProductHasRatingOrMore(double actualRating) {
-        double expectedRating = productDescriptionPage.getProductRating();
-        assertThat(expectedRating, is(greaterThanOrEqualTo(actualRating)));
     }
 }
