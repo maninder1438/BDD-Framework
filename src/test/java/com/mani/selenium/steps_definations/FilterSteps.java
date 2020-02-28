@@ -3,6 +3,7 @@ package com.mani.selenium.steps_definations;
 import com.mani.selenium.pages.ResultsPage;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,7 +16,6 @@ public class FilterSteps {
     @And("^Select the product rating \"([^\"]*)\" from the rating filter$")
     public void selectTheProductRatingFromTheRatingFilter(String rating) {
         resultsPage.selectProductRatingFilter(rating);
-
     }
 
     @Then("^I should be able to see the products of rating \"([^\"]*)\"$")
@@ -25,25 +25,36 @@ public class FilterSteps {
     }
 
     @And("^Select the price \"([^\"]*)\" from price filter$")
-    public void selectThePriceFromPriceFilter(String price)  {
+    public void selectThePriceFromPriceFilter(String price) {
         resultsPage.selectPriceFilter(price);
-
     }
 
     @Then("^I should be able to see the products having price between \"([^\"]*)\"$")
-    public void iShouldBeAbleToSeeTheProductsHavingPriceBetween(String priceRange)  {
+    public void iShouldBeAbleToSeeTheProductsHavingPriceBetween(String priceRange) {
 
         List<Double> expectedPriceList = resultsPage.getAllProductPrices();
 
-        String[] selectedPrice = priceRange.replace("£","").split("-");
+        String[] selectedPrice = priceRange.replace("£", "").split("-");
         double minValuePriceFilter = Double.parseDouble(selectedPrice[0]);
         double maxValuePriceFilter = Double.parseDouble(selectedPrice[1].trim());
 
         for (double indPrice : expectedPriceList) {
-            assertThat(indPrice,is(greaterThanOrEqualTo(minValuePriceFilter)));
-            assertThat(indPrice,is(lessThan(maxValuePriceFilter)));
-           }
+            assertThat(indPrice, is(greaterThanOrEqualTo(minValuePriceFilter)));
+            assertThat(indPrice, is(lessThan(maxValuePriceFilter)));
+        }
     }
 
 
+    @And("^Select the brand name \"([^\"]*)\" from the brands filter$")
+    public void selectTheBrandNameFromTheBrandsFilter(String brandName) {
+        resultsPage.selectBrandFilter(brandName);
+    }
+
+    @Then("^I should be able to see \"([^\"]*)\" brand products only$")
+    public void iShouldBeAbleToSeeBrandProductsOnly(String brandName) {
+        List<String> allProductNames = resultsPage.getAllProductNames();
+        for (String item : allProductNames) {
+            assertThat(item.toLowerCase(), containsString(brandName));
+        }
+    }
 }

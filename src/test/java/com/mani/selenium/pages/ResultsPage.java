@@ -2,6 +2,8 @@ package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
 import com.mani.selenium.utils.Helpers;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
@@ -28,6 +30,9 @@ public class ResultsPage extends DriverManager {
 
     @FindBy(css = "div[data-facet=\"price\"]> button.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")
     private WebElement priceFilterShowMore;
+
+    @FindBy(css = "label[name=\"brands\"]")
+    private List<WebElement> brandFilter;
 
     public String getSearchTitle() {
         return searchTitle.getText().toLowerCase();
@@ -76,6 +81,8 @@ public class ResultsPage extends DriverManager {
     public void selectProductRatingFilter(String selectRating) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+
+        sleep(3000);
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
             if (availableFilter.equalsIgnoreCase(selectRating)) {
@@ -86,19 +93,48 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectPriceFilter(String selectPrice) {
+        /**below explicit is not working**/
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"), 4));
-        priceFilterShowMore.click();
-        for (WebElement review : priceFilter) {
-            String availableFilter = review.getAttribute("value");
 
-            if (availableFilter.equalsIgnoreCase(selectPrice)) {
+    /**need to ask how to run this faster**/
+           try {
+               if(priceFilterShowMore.isDisplayed() )
+               {
+                   priceFilterShowMore.click();
+               }
+           } catch (Exception e) {
+               e.printStackTrace();
+           }
+
+        sleep(3000);
+        for (WebElement review : priceFilter) {
+                String availableFilter = review.getAttribute("value");
+
+                if (availableFilter.equalsIgnoreCase(selectPrice)) {
+                    review.click();
+                    sleep(5000);
+                    break;
+                }
+            }
+        }
+
+    public void selectBrandFilter(String selectBrand) {
+//        new WebDriverWait(driver, 10)
+//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+
+        for (WebElement review : brandFilter) {
+            String availableFilter = review.getAttribute("value");
+            if (availableFilter.equalsIgnoreCase(selectBrand)) {
                 review.click();
-                sleep(6000);
+                sleep(5000);
                 break;
             }
         }
     }
 
-}
+
+
+    }
+
 

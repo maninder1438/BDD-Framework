@@ -14,6 +14,13 @@ Feature: Filter
   @smoke
   Scenario: Verify product price filter
     Given I am on homepage
-    When I search for a product of "phone sim free"
-    And  Select the price "£500 - £1000" from price filter
-    Then I should be able to see the products having price between "£500 - £1000"
+    When I search for a product of "laptop"
+    And  Select the price "£2000 - £5000" from price filter
+    Then I should be able to see the products having price between "£2000 - £50000"
+
+  @smoke
+  Scenario: Verify product brand filter
+    Given I am on homepage
+    When I search for a product of "laptop"
+    And  Select the brand name "apple" from the brands filter
+    Then I should be able to see "apple" brand products only

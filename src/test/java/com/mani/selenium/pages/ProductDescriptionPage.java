@@ -22,6 +22,12 @@ public class ProductDescriptionPage extends DriverManager {
     @FindBy(css = "li.price.product-price-primary h2")
     private WebElement priceOfProduct;
 
+    @FindBy (css = "div[data-test='heading-ratings']")
+    private WebElement ratingOfProduct;
+
+    @FindBy(css = ".product-description-content-text")
+    private WebElement productDescriptionText;
+
     public void addToTrolley() {sleep(4000);addToTrolleyButton.click();}
 
     public void continueShopping() {sleep(4000);continueShoppingButton.click();}
@@ -37,5 +43,14 @@ public class ProductDescriptionPage extends DriverManager {
         sleep(4000);
        Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
         return price;
+    }
+    public Double getProductRating(){
+        sleep(3000);
+        Double rating = Double.parseDouble(ratingOfProduct.getAttribute("data-star-rating"));
+        return rating;
+    }
+    public String getProductDescriptionText(){
+        sleep(3000);
+        return productDescriptionText.getText().toLowerCase();
     }
 }
