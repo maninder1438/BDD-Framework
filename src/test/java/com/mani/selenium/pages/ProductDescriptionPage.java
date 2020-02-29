@@ -38,6 +38,7 @@ public class ProductDescriptionPage extends DriverManager {
         new Select(selectQuantityButton).selectByVisibleText(qty);
         return qty;
     }
+    
     public Double productPrice()  {
          Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
         return price;
