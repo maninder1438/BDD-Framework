@@ -4,7 +4,6 @@ import com.mani.selenium.pages.HomePage;
 import com.mani.selenium.pages.LoginPage;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.endsWith;
 
@@ -19,7 +18,7 @@ public class CommonSteps {
     }
 
     @When("^I search for a product of \"([^\"]*)\"$")
-    public void iSearchForAProductOf(String term) throws InterruptedException {
+    public void iSearchForAProductOf(String term) {
         homePage.doSearch(term);
     }
 

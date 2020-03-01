@@ -13,6 +13,7 @@ public class PriceSteps {
     @And("^Select the price \"([^\"]*)\" from price filter$")
     public void selectThePriceFromPriceFilter(String price) {
         resultsPage.selectPriceFilter(price);
+
     }
 
     @Then("^I should be able to see the products having price between \"([^\"]*)\"$")

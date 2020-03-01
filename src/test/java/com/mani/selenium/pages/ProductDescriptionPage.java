@@ -10,33 +10,45 @@ public class ProductDescriptionPage extends DriverManager {
     @FindBy(css = "button[data-test='component-att-button']")
     private WebElement addToTrolleyButton;
 
-    @FindBy(css = "button[data-test=\"component-att-button-continue\"]")
+    @FindBy(css = "button[data-test='component-att-button-continue']")
     private WebElement continueShoppingButton;
 
     @FindBy(css = ".xs-row a[data-test='component-att-button-basket']")
     private WebElement goToTrolleyButton;
 
-    @FindBy(css = "select[id=\"add-to-trolley-quantity\"]")
+    @FindBy(css = "select[id='add-to-trolley-quantity']")
     private WebElement selectQuantityButton;
 
     @FindBy(css = "li.price.product-price-primary h2")
     private WebElement priceOfProduct;
 
-    public void addToTrolley() {sleep(4000);addToTrolleyButton.click();}
+    @FindBy (css = "div[data-test='heading-ratings']")
+    private WebElement ratingOfProduct;
 
-    public void continueShopping() {sleep(4000);continueShoppingButton.click();}
+    @FindBy(css = ".product-description-content-text")
+    private WebElement productDescriptionText;
 
-    public void goToTrolley() {sleep(4000);goToTrolleyButton.click();}
+    public void addToTrolley() {sleep(5000);escapeKey();addToTrolleyButton.click();}
+
+    public void continueShopping() {sleep(7000);escapeKey();continueShoppingButton.click();}
+
+    public void goToTrolley() {sleep(7000);escapeKey();goToTrolleyButton.click();}
 
     public String quantityToSelect(String qty) {
         sleep(3000);
+        escapeKey();
         new Select(selectQuantityButton).selectByVisibleText(qty);
         return qty;
     }
-    
     public Double productPrice()  {
-        sleep(4000);
-       Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
+        Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
         return price;
+    }
+    public Double getProductRating(){
+        Double rating = Double.parseDouble(ratingOfProduct.getAttribute("data-star-rating"));
+        return rating;
+    }
+    public String getProductDescriptionText(){
+           return productDescriptionText.getText().toLowerCase();
     }
 }
