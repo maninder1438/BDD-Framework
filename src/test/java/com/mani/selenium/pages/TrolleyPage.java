@@ -26,13 +26,8 @@ public class TrolleyPage extends DriverManager {
     @FindBy (css = ".xs-hidden #basket-FulfilmentSelectorForm-collectButton")
     private WebElement collectionButton;
 
-<<<<<<< HEAD
     @FindBy (css = "button[data-el^='store-selector-result__select-store-button']")
     private  List<WebElement> selectThisStoreButton;
-=======
-    @FindBy (css = "button[data-el='store-selector-result__select-store-button--4215']")
-    private  WebElement selectThisStoreButton;
->>>>>>> master
 
     @FindBy (css = ".Buttonstyles__Button-q93iwm-2.EhVk > .FulfilmentConfirmationForm__extendedText__2t8LV")
     private WebElement continueWithCollectionButton;
@@ -76,38 +71,18 @@ public class TrolleyPage extends DriverManager {
         sleep(4000);
         return numberOfProductsInBasket;
     }
-    
     public String trolleyTotalProductPrice() {
         escapeKey();String trolleyTotal = trollyTotalPrice.getText().replace("£", "").replace(",", "");
         return trolleyTotal;
     }
+
     public void enterPostcodeForProductAvailability(){
-<<<<<<< HEAD
        escapeKey(); enterPostcodeForProductAvailability.sendKeys("ealing");    }
     public void collectionButton(){collectionButton.click(); }
     public void selectThisStore(){escapeKey();selectThisStoreButton.get(0).click(); }
     public void continueWithCollection(){escapeKey();continueWithCollectionButton.click(); }
     public void reserveAndPayInStore(){escapeKey();reserveAndPayInStoreButton.click();  }
     public void reserveDetailsEmail(){escapeKey();reserveDetailsEmail.sendKeys("check@gmail.com");}
-=======
-        enterPostcodeForProductAvailability.sendKeys("TW5 0PB");
-    }
-    public void collectionButton(){
-        collectionButton.click();
-    }
-    public void selectThisStore(){
-        selectThisStoreButton.click();
-    }
-    public void continueWithCollection(){
-        continueWithCollectionButton.click();
-    }
-    public void reserveAndPayInStore(){
-        reserveAndPayInStoreButton.click();
-    }
-    public void reserveDetailsEmail(){
-        reserveDetailsEmail.sendKeys("demo@gmail.com");
-    }
->>>>>>> master
     public void reserveContinueButton(){
         reserveContinueButton.click();
     }
@@ -121,11 +96,7 @@ public class TrolleyPage extends DriverManager {
     }
     public String getQuantityOfReservedProdcuts(){
         String numberOfReservedProducts = quantityReserved.getText();
-<<<<<<< HEAD
         sleep(4000);
-=======
-        sleep(3000);
->>>>>>> master
         return numberOfReservedProducts;
     }
     public String getTotalPriceOfReservedProducts(){
