@@ -88,7 +88,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectProductRatingFilter(String selectRating) {
-        new WebDriverWait(driver, 10)
+        new WebDriverWait(driver, 15)
                 .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
             customerRatingDropdown.click();
         sleep(3000);
@@ -103,8 +103,9 @@ public class ResultsPage extends DriverManager {
 
     public void selectPriceFilter(String selectPrice) {
         /**below explicit is not working**/
-//        new WebDriverWait(driver, 10)
-//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"), 4));
+
+        new WebDriverWait(driver, 25)
+                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"),1));
         /**need to ask how to run this faster**/
         sleep(5000);
         if (priceFilter.size() == 0) {

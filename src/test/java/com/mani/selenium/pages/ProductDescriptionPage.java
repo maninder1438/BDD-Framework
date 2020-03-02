@@ -1,9 +1,12 @@
 package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductDescriptionPage extends DriverManager {
 
@@ -36,6 +39,9 @@ public class ProductDescriptionPage extends DriverManager {
 
     public String quantityToSelect(String qty) {
         escapeKey();
+        new WebDriverWait(driver, 25)
+             .until(ExpectedConditions.elementToBeClickable(By.cssSelector("select[id='add-to-trolley-quantity']")));
+
         new Select(selectQuantityButton).selectByVisibleText(qty);
         return qty;
     }

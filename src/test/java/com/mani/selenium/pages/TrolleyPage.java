@@ -79,9 +79,9 @@ public class TrolleyPage extends DriverManager {
     public void enterPostcodeForProductAvailability(){
        escapeKey(); enterPostcodeForProductAvailability.sendKeys("ealing");    }
     public void collectionButton(){collectionButton.click(); }
-    public void selectThisStore(){escapeKey();selectThisStoreButton.get(0).click(); }
-    public void continueWithCollection(){escapeKey();continueWithCollectionButton.click(); }
-    public void reserveAndPayInStore(){escapeKey();reserveAndPayInStoreButton.click();  }
+    public void selectThisStore(){sleep(2000);escapeKey();selectThisStoreButton.get(0).click(); }
+    public void continueWithCollection(){sleep(2000);escapeKey();continueWithCollectionButton.click(); }
+    public void reserveAndPayInStore(){sleep(2000);escapeKey();reserveAndPayInStoreButton.click();  }
     public void reserveDetailsEmail(){escapeKey();reserveDetailsEmail.sendKeys("check@gmail.com");}
     public void reserveContinueButton(){
         reserveContinueButton.click();
@@ -91,7 +91,7 @@ public class TrolleyPage extends DriverManager {
     }
     public String getReservationConfirmationMsg(){
         String msg= reservationConfirmationMsg.getText();
-        sleep(8000);
+        sleep(6000);
         return msg;
     }
     public String getQuantityOfReservedProdcuts(){
