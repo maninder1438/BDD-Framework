@@ -71,6 +71,7 @@ public class TrolleyPage extends DriverManager {
         sleep(4000);
         return numberOfProductsInBasket;
     }
+    
     public String trolleyTotalProductPrice() {
         escapeKey();String trolleyTotal = trollyTotalPrice.getText().replace("£", "").replace(",", "");
         return trolleyTotal;
