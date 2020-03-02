@@ -47,7 +47,6 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<String> getAllProductNames() {
-        escapeKey();
         List<String> productNamesList = new ArrayList<>();
         for (WebElement indProduct : productNameList) {
             String actual = indProduct.getText();
@@ -57,8 +56,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductRatings() {
-        sleep(5000);
-        escapeKey();
+        sleep(4000);
         List<Double> productRatingList = new ArrayList<>();
         for (WebElement rating : ratingStar) {
             String currentRatingInString = rating.getAttribute("data-star-rating");
@@ -90,12 +88,10 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectProductRatingFilter(String selectRating) {
-//        new WebDriverWait(driver, 10)
-//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+            customerRatingDropdown.click();
         sleep(3000);
-        escapeKey();
-        customerRatingDropdown.click();
-        sleep(2000);
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
             if (availableFilter.equalsIgnoreCase(selectRating)) {
@@ -110,8 +106,6 @@ public class ResultsPage extends DriverManager {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"), 4));
         /**need to ask how to run this faster**/
-        sleep(2000);
-        escapeKey();
         if (priceFilter.size() == 0) {
             throw new RuntimeException("Sorry, no product available with price " + priceFilter);
         }
@@ -134,7 +128,7 @@ public class ResultsPage extends DriverManager {
     public void selectBrandFilter(String selectBrand) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-        sleep(4000);
+
         escapeKey();
         try {
             if (brandFilterShowMore.isDisplayed()) {

@@ -54,9 +54,9 @@ Feature: Basket
     And  Verify that selected product has brand name"Apple"
     And  Verify that selected product has rating"3.0" or more
     And  I should be able to see the products having price between "25 - £50"
-    And  change the quantity to "3"
+    And  change the quantity to "2"
     And  Add the selected product to basket
     And  Reserve the item to collect from store
     Then I should be able to see the reservation confirmation
-    And  The selected quantity should be "3" on reservation confirmation
+    And  The selected quantity should be "2" on reservation confirmation
     And  The total price should be correct

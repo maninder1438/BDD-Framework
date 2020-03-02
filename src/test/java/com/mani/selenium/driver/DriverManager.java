@@ -62,6 +62,6 @@ public class DriverManager {
      }
      public void escapeKey(){
          Actions action = new Actions(driver);
-         action.sendKeys(Keys.ESCAPE);
+         action.sendKeys(Keys.ESCAPE).perform();
      }
 }
