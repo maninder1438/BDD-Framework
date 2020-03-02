@@ -21,9 +21,16 @@ Feature: Filter
   @smoke @brandfilter
   Scenario: Verify product brand filter
     Given I am on homepage
+<<<<<<< HEAD
+    When I search for a product of "phone cover"
+    And  Select the brand name "apple" from the brands filter
+    And  Select the random product from product list
+    Then Verify that selected product has brand name"Apple"
+=======
     When I search for a product of "laptop"
     And  Select the brand name "apple" from the brands filter
     Then I should be able to see "apple" brand products only
+>>>>>>> master
 
   @smoke @rating&pricefilter
   Scenario: Verify product rating filter & price filter

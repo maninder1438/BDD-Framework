@@ -3,7 +3,7 @@ Feature: Basket
   As an end user
   I want to verify the basket product
   So that i can purchase the right selected product
-  @rsmoke
+  @smoke
   Scenario: Verify the product name in the basket
     Given I am on homepage
     When I search for a product of "tripods, monopods and cases"
@@ -36,10 +36,31 @@ Feature: Basket
     Given I am on homepage
     When  I search for a product of "phone cover"
     And  Select the random product from product list
-    And  change the quantity to "3"
+    And  change the quantity to "2"
     And  Add the selected product to basket
     And  Reserve the item to collect from store
     Then I should be able to see the reservation confirmation
+    And  The selected quantity should be "2" on reservation confirmation
+    And  The total price should be correct
+
+  @regression @multipleFilter
+  Scenario: Verify that I can reserve products using multiple filters
+    Given I am on homepage
+    When  I search for a product of "phone cover"
+    And  Select the brand name "Apple" from the brands filter
+    And Select the product rating "3or more" from the rating filter
+    And  Select the price "£25 - £50" from price filter
+    And  Select the random product from product list
+    And  Verify that selected product has brand name"Apple"
+    And  Verify that selected product has rating"3.0" or more
+    And  I should be able to see the products having price between "25 - £50"
+    And  change the quantity to "2"
+    And  Add the selected product to basket
+    And  Reserve the item to collect from store
+    Then I should be able to see the reservation confirmation
+<<<<<<< HEAD
+    And  The selected quantity should be "2" on reservation confirmation
+=======
     And  The selected quantity should be "3" on reservation confirmation
     And  The total price should be correct
 
@@ -59,4 +80,5 @@ Feature: Basket
     And  Reserve the item to collect from store
     Then I should be able to see the reservation confirmation
     And  The selected quantity should be "3" on reservation confirmation
+>>>>>>> master
     And  The total price should be correct

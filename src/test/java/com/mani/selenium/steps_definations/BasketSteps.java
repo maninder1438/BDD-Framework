@@ -27,6 +27,7 @@ public class BasketSteps {
 
     @And("^Add the selected product to basket$")
     public void AddTheSelectedProductToBasket() {
+
         productDescriptionPage.addToTrolley();
         productDescriptionPage.goToTrolley();
     }

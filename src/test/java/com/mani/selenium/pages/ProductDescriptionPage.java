@@ -28,6 +28,16 @@ public class ProductDescriptionPage extends DriverManager {
     @FindBy(css = ".product-description-content-text")
     private WebElement productDescriptionText;
 
+<<<<<<< HEAD
+    public void addToTrolley() {escapeKey();addToTrolleyButton.click();}
+
+    public void continueShopping() {continueShoppingButton.click();}
+
+    public void goToTrolley() {goToTrolleyButton.click();}
+
+    public String quantityToSelect(String qty) {
+        escapeKey();
+=======
     public void addToTrolley() {sleep(2000);addToTrolleyButton.click();}
 
     public void continueShopping() {sleep(3000);continueShoppingButton.click();}
@@ -35,15 +45,24 @@ public class ProductDescriptionPage extends DriverManager {
     public void goToTrolley() {sleep(3000);goToTrolleyButton.click();}
 
     public String quantityToSelect(String qty) {
+>>>>>>> master
         new Select(selectQuantityButton).selectByVisibleText(qty);
         return qty;
     }
     public Double productPrice()  {
+<<<<<<< HEAD
+        Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
+        return price;
+    }
+    public Double getProductRating(){
+        Double rating = Double.parseDouble(ratingOfProduct.getAttribute("data-star-rating"));
+=======
          Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
         return price;
     }
     public Double getProductRating(){
          Double rating = Double.parseDouble(ratingOfProduct.getAttribute("data-star-rating"));
+>>>>>>> master
         return rating;
     }
     public String getProductDescriptionText(){

@@ -2,8 +2,12 @@ package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
 import com.mani.selenium.utils.Helpers;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +36,12 @@ public class ResultsPage extends DriverManager {
     @FindBy(css = "div[data-facet='price']> button.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")
     private WebElement priceFilterShowMore;
 
+<<<<<<< HEAD
+    @FindBy(css = "div[data-facet='brands']> button.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")
+    private WebElement brandFilterShowMore;
+
+=======
+>>>>>>> master
     @FindBy(css = "label[name='brands']")
     private List<WebElement> brandFilter;
 
@@ -49,7 +59,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductRatings() {
-        sleep(5000);
+        sleep(4000);
         List<Double> productRatingList = new ArrayList<>();
         for (WebElement rating : ratingStar) {
             String currentRatingInString = rating.getAttribute("data-star-rating");
@@ -60,6 +70,10 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductPrices() {
+<<<<<<< HEAD
+        escapeKey();
+=======
+>>>>>>> master
         List<Double> productPriceList = new ArrayList<>();
         for (WebElement indProductPrice : productPrice) {
             double actual = Double.parseDouble(indProductPrice.getText().replace("£", ""));
@@ -69,6 +83,8 @@ public class ResultsPage extends DriverManager {
     }
 
     public String selectAnyProduct() {
+        sleep(4000);
+        escapeKey();
         int productSize = productNameList.size();
         int randomNumber = new Helpers().randomNumberGenerator(productSize);
         WebElement selectedElement = productNameList.get(randomNumber);
@@ -78,10 +94,17 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectProductRatingFilter(String selectRating) {
+<<<<<<< HEAD
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+            customerRatingDropdown.click();
+        sleep(3000);
+=======
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
         customerRatingDropdown.click();
         sleep(2000);
+>>>>>>> master
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
             if (availableFilter.equalsIgnoreCase(selectRating)) {
@@ -106,12 +129,19 @@ public class ResultsPage extends DriverManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
+           for (WebElement review : priceFilter) {
+            String availableFilter = review.getAttribute("value");
+            if (availableFilter.equalsIgnoreCase(selectPrice)) {
+                review.click();
+=======
         sleep(3000);
         for (WebElement review : priceFilter) {
             String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectPrice)) {
                 review.click();
                 sleep(5000);
+>>>>>>> master
                 break;
             }
         }
@@ -120,12 +150,29 @@ public class ResultsPage extends DriverManager {
     public void selectBrandFilter(String selectBrand) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+<<<<<<< HEAD
+
+        escapeKey();
+        try {
+            if (brandFilterShowMore.isDisplayed()) {
+                brandFilterShowMore.click();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+=======
+>>>>>>> master
         for (WebElement review : brandFilter) {
             String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectBrand)) {
                 review.click();
+<<<<<<< HEAD
+                 break;
+=======
                 sleep(5000);
                 break;
+>>>>>>> master
             }
         }
     }
