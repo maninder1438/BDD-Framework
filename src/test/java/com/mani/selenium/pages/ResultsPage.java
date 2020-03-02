@@ -47,6 +47,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<String> getAllProductNames() {
+        sleep(3000);
         List<String> productNamesList = new ArrayList<>();
         for (WebElement indProduct : productNameList) {
             String actual = indProduct.getText();
@@ -56,7 +57,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductRatings() {
-        sleep(4000);
+        sleep(3000);
         List<Double> productRatingList = new ArrayList<>();
         for (WebElement rating : ratingStar) {
             String currentRatingInString = rating.getAttribute("data-star-rating");
@@ -88,10 +89,11 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectProductRatingFilter(String selectRating) {
-        new WebDriverWait(driver, 15)
+        new WebDriverWait(driver, 25)
                 .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-            customerRatingDropdown.click();
-        sleep(3000);
+        sleep(2000);
+        customerRatingDropdown.click();
+        sleep(2000);
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
             if (availableFilter.equalsIgnoreCase(selectRating)) {
@@ -103,11 +105,11 @@ public class ResultsPage extends DriverManager {
 
     public void selectPriceFilter(String selectPrice) {
         /**below explicit is not working**/
-
-        new WebDriverWait(driver, 25)
+        escapeKey();
+        new WebDriverWait(driver, 60)
                 .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"),1));
         /**need to ask how to run this faster**/
-        sleep(5000);
+        sleep(4000);
         if (priceFilter.size() == 0) {
             throw new RuntimeException("Sorry, no product available with price " + priceFilter);
         }
@@ -125,8 +127,7 @@ public class ResultsPage extends DriverManager {
                 break;
             }
         }
-           sleep(3000);
-    }
+     }
 
     public void selectBrandFilter(String selectBrand) {
 //        new WebDriverWait(driver, 10)
@@ -140,6 +141,7 @@ public class ResultsPage extends DriverManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        sleep(3000);
 
         for (WebElement review : brandFilter) {
             String availableFilter = review.getAttribute("value");

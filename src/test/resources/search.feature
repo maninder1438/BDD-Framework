@@ -17,10 +17,10 @@ Feature: Search
     Then I should be able to see "<searchItem>" product
 
    Examples:
-      |     searchItem  |
-      |      puma       |
-      |     adidas      |
-      |    smart watch  |
+      | searchItem |
+      | puma       |
+      | adidas     |
+      | hard drive |
 
 
 

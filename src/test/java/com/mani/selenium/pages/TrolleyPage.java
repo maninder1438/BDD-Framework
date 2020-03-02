@@ -1,8 +1,11 @@
 package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -29,7 +32,7 @@ public class TrolleyPage extends DriverManager {
     @FindBy (css = "button[data-el^='store-selector-result__select-store-button']")
     private  List<WebElement> selectThisStoreButton;
 
-    @FindBy (css = ".Buttonstyles__Button-q93iwm-2.EhVk > .FulfilmentConfirmationForm__extendedText__2t8LV")
+    @FindBy (css = "button[data-e2e=\"continue-with-collection-button\"]")
     private WebElement continueWithCollectionButton;
 
     @FindBy (css = "a[data-test='pay-in-store-button']")
@@ -77,10 +80,13 @@ public class TrolleyPage extends DriverManager {
     }
 
     public void enterPostcodeForProductAvailability(){
-       escapeKey(); enterPostcodeForProductAvailability.sendKeys("ealing");    }
+       escapeKey(); enterPostcodeForProductAvailability.sendKeys("london");    }
     public void collectionButton(){collectionButton.click(); }
     public void selectThisStore(){sleep(2000);escapeKey();selectThisStoreButton.get(0).click(); }
-    public void continueWithCollection(){sleep(2000);escapeKey();continueWithCollectionButton.click(); }
+    public void continueWithCollection(){sleep(4000);
+        new WebDriverWait(driver, 25)
+                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-e2e=\"continue-with-collection-button\"]")));
+                continueWithCollectionButton.click(); }
     public void reserveAndPayInStore(){sleep(2000);escapeKey();reserveAndPayInStoreButton.click();  }
     public void reserveDetailsEmail(){escapeKey();reserveDetailsEmail.sendKeys("check@gmail.com");}
     public void reserveContinueButton(){

@@ -39,7 +39,8 @@ public class ProductDescriptionPage extends DriverManager {
 
     public String quantityToSelect(String qty) {
         escapeKey();
-        new WebDriverWait(driver, 25)
+        sleep(2000);
+        new WebDriverWait(driver, 60)
              .until(ExpectedConditions.elementToBeClickable(By.cssSelector("select[id='add-to-trolley-quantity']")));
 
         new Select(selectQuantityButton).selectByVisibleText(qty);

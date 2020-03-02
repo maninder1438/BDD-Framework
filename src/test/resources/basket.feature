@@ -46,14 +46,14 @@ Feature: Basket
   @regression @multipleFilter
   Scenario: Verify that I can reserve products using multiple filters
     Given I am on homepage
-    When  I search for a product of "phone cover"
-    And  Select the brand name "Apple" from the brands filter
-    And Select the product rating "3or more" from the rating filter
-    And  Select the price "£25 - £50" from price filter
+    When  I search for a product of "laptop"
+    And  Select the brand name "hp" from the brands filter
+    And Select the product rating "2or more" from the rating filter
+    And  Select the price "£250 - £500" from price filter
     And  Select the random product from product list
-    And  Verify that selected product has brand name"Apple"
-    And  Verify that selected product has rating"3.0" or more
-    And  I should be able to see the products having price between "25 - £50"
+    And  Verify that selected product has brand name"hp"
+    And  Verify that selected product has rating"2.0" or more
+    And  I should be able to see the products having price between "£250 - £500"
     And  change the quantity to "2"
     And  Add the selected product to basket
     And  Reserve the item to collect from store
