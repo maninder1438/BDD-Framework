@@ -77,8 +77,7 @@ public class TrolleyPage extends DriverManager {
     }
 
     public void enterPostcodeForProductAvailability(){
-       escapeKey(); enterPostcodeForProductAvailability.sendKeys("ealing");
-    }
+       escapeKey(); enterPostcodeForProductAvailability.sendKeys("ealing");    }
     public void collectionButton(){collectionButton.click(); }
     public void selectThisStore(){escapeKey();selectThisStoreButton.get(0).click(); }
     public void continueWithCollection(){escapeKey();continueWithCollectionButton.click(); }
