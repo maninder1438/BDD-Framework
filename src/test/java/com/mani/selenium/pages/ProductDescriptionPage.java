@@ -28,11 +28,11 @@ public class ProductDescriptionPage extends DriverManager {
     @FindBy(css = ".product-description-content-text")
     private WebElement productDescriptionText;
 
-    public void addToTrolley() {escapeKey();addToTrolleyButton.click();}
+    public void addToTrolley() {sleep(4000);escapeKey();addToTrolleyButton.click();}
 
-    public void continueShopping() {continueShoppingButton.click();}
+    public void continueShopping() {sleep(5000);continueShoppingButton.click();}
 
-    public void goToTrolley() {goToTrolleyButton.click();}
+    public void goToTrolley() {sleep(5000);goToTrolleyButton.click();}
 
     public String quantityToSelect(String qty) {
         escapeKey();
@@ -40,6 +40,7 @@ public class ProductDescriptionPage extends DriverManager {
         return qty;
     }
     public Double productPrice()  {
+        sleep(2000);
         Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
         return price;
     }

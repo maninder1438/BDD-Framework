@@ -106,6 +106,7 @@ public class ResultsPage extends DriverManager {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"), 4));
         /**need to ask how to run this faster**/
+        sleep(5000);
         if (priceFilter.size() == 0) {
             throw new RuntimeException("Sorry, no product available with price " + priceFilter);
         }
@@ -123,6 +124,7 @@ public class ResultsPage extends DriverManager {
                 break;
             }
         }
+           sleep(3000);
     }
 
     public void selectBrandFilter(String selectBrand) {
