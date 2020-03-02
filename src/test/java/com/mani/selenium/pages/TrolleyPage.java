@@ -75,7 +75,6 @@ public class TrolleyPage extends DriverManager {
         escapeKey();String trolleyTotal = trollyTotalPrice.getText().replace("£", "").replace(",", "");
         return trolleyTotal;
     }
-
     public void enterPostcodeForProductAvailability(){
        escapeKey(); enterPostcodeForProductAvailability.sendKeys("ealing");    }
     public void collectionButton(){collectionButton.click(); }
