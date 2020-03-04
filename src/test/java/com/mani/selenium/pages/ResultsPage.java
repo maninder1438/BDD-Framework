@@ -2,12 +2,8 @@ package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
 import com.mani.selenium.utils.Helpers;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,9 +20,6 @@ public class ResultsPage extends DriverManager {
     @FindBy(css = ".findability-facet__rating-label")
     private List<WebElement> ratingWebElements;
 
-    @FindBy(css = "div[data-facet='customer rating']")
-    private WebElement customerRatingDropdown;
-
     @FindBy(css = ".ProductCardstyles__PriceText-l8f8q8-14.gHrEdF")
     private List<WebElement> productPrice;
 
@@ -36,9 +29,6 @@ public class ResultsPage extends DriverManager {
     @FindBy(css = "div[data-facet='price']> button.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")
     private WebElement priceFilterShowMore;
 
-    @FindBy(css = "div[data-facet='brands']> button.Accordionstyles__ButtonLink-pegw6j-3.bRQRVq")
-    private WebElement brandFilterShowMore;
-
     @FindBy(css = "label[name='brands']")
     private List<WebElement> brandFilter;
 
@@ -47,7 +37,6 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<String> getAllProductNames() {
-        sleep(3000);
         List<String> productNamesList = new ArrayList<>();
         for (WebElement indProduct : productNameList) {
             String actual = indProduct.getText();
@@ -57,7 +46,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductRatings() {
-        sleep(3000);
+        sleep(5000);
         List<Double> productRatingList = new ArrayList<>();
         for (WebElement rating : ratingStar) {
             String currentRatingInString = rating.getAttribute("data-star-rating");
@@ -68,8 +57,9 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductPrices() {
-        escapeKey();
+
         List<Double> productPriceList = new ArrayList<>();
+
         for (WebElement indProductPrice : productPrice) {
             double actual = Double.parseDouble(indProductPrice.getText().replace("£", ""));
             productPriceList.add(actual);
@@ -78,8 +68,6 @@ public class ResultsPage extends DriverManager {
     }
 
     public String selectAnyProduct() {
-        sleep(4000);
-        escapeKey();
         int productSize = productNameList.size();
         int randomNumber = new Helpers().randomNumberGenerator(productSize);
         WebElement selectedElement = productNameList.get(randomNumber);
@@ -89,11 +77,10 @@ public class ResultsPage extends DriverManager {
     }
 
     public void selectProductRatingFilter(String selectRating) {
-        new WebDriverWait(driver, 25)
-                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-        sleep(2000);
-        customerRatingDropdown.click();
-        sleep(2000);
+//        new WebDriverWait(driver, 10)
+//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+
+        sleep(3000);
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
             if (availableFilter.equalsIgnoreCase(selectRating)) {
@@ -105,11 +92,11 @@ public class ResultsPage extends DriverManager {
 
     public void selectPriceFilter(String selectPrice) {
         /**below explicit is not working**/
-        escapeKey();
-        new WebDriverWait(driver, 60)
-                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"),1));
+//        new WebDriverWait(driver, 10)
+//                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector("label[name=\"price\"]"), 4));
+
         /**need to ask how to run this faster**/
-        sleep(4000);
+
         if (priceFilter.size() == 0) {
             throw new RuntimeException("Sorry, no product available with price " + priceFilter);
         }
@@ -120,37 +107,31 @@ public class ResultsPage extends DriverManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-           for (WebElement review : priceFilter) {
+        sleep(3000);
+        for (WebElement review : priceFilter) {
             String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectPrice)) {
                 review.click();
+                sleep(5000);
                 break;
             }
         }
-     }
+    }
 
     public void selectBrandFilter(String selectBrand) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-
-        escapeKey();
-        try {
-            if (brandFilterShowMore.isDisplayed()) {
-                brandFilterShowMore.click();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        sleep(3000);
-
         for (WebElement review : brandFilter) {
             String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectBrand)) {
                 review.click();
-                 break;
+                sleep(5000);
+                break;
             }
         }
     }
+
+
 }
 
 

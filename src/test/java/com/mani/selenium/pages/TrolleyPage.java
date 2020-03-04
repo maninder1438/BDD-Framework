@@ -1,12 +1,8 @@
 package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 public class TrolleyPage extends DriverManager {
@@ -18,96 +14,96 @@ public class TrolleyPage extends DriverManager {
     private WebElement priceInTrolley;
 
     @FindBy(css = ".ProductCard__productLinePrice__3QC7V")
-    private List <WebElement> numberOfProductsInTrolley;
+    private List<WebElement> numberOfProductsInTrolley;
 
     @FindBy(css = "div[data-e2e='basket-total-price']")
     private WebElement trollyTotalPrice;
 
-    @FindBy (css = ".xs-hidden #basket-FulfilmentSelectorForm")
+    @FindBy(css = ".xs-hidden #basket-FulfilmentSelectorForm")
     private WebElement enterPostcodeForProductAvailability;
 
-    @FindBy (css = ".xs-hidden #basket-FulfilmentSelectorForm-collectButton")
+    @FindBy(css = ".xs-hidden #basket-FulfilmentSelectorForm-collectButton")
     private WebElement collectionButton;
 
-    @FindBy (css = "button[data-el^='store-selector-result__select-store-button']")
-    private  List<WebElement> selectThisStoreButton;
+    @FindBy(css = "button[data-el^='store-selector-result__select-store-button']")
+    private List<WebElement> selectThisStoreButton;
 
-    @FindBy (css = "button[data-e2e=\"continue-with-collection-button\"]")
+    @FindBy(css = "button[data-e2e=\"continue-with-collection-button\"]")
     private WebElement continueWithCollectionButton;
 
-    @FindBy (css = "a[data-test='pay-in-store-button']")
+    @FindBy(css = "a[data-test='pay-in-store-button']")
     private WebElement reserveAndPayInStoreButton;
 
-    @FindBy (css = "input[name='reserveDetails.email']")
+    @FindBy(css = "input[name='reserveDetails.email']")
     private WebElement reserveDetailsEmail;
 
-    @FindBy (css = "button[data-test='reserve-continue-button']")
+    @FindBy(css = "button[data-test='reserve-continue-button']")
     private WebElement reserveContinueButton;
 
-    @FindBy (css = "button[data-test='reserve-now-button']")
-    private WebElement reserveNowButton;
+    @FindBy(css = ".HeaderContent__basket__3dSvK > span")
+    private WebElement checkQtyAndPrice;
 
-    @FindBy (css = "h1[data-test='reservation-confirmation-message']")
-    private WebElement reservationConfirmationMsg;
-
-    @FindBy (css = "span[data-e2e='product-quantity']")
-    private WebElement quantityReserved;
-
-    @FindBy (css = "div[data-test='basket-total']")
-    private WebElement priceOfReservedProducts;
+    @FindBy(css = "button[data-test='reserve-now-button']")
+    private WebElement reseerveNowButton;
 
     public String getProductNameInTrolley() {
-        sleep(4000);
-        escapeKey();
-         return nameInTrolley.getText();
+        sleep(3000);
+        return nameInTrolley.getText();
     }
 
     public String getProductPriceInTrolley() {
-        sleep(4000);
-        escapeKey();
         return priceInTrolley.getText().replace("£", "");
     }
 
     public int numberOfProductsinTrolley() {
-        escapeKey();
         int numberOfProductsInBasket = numberOfProductsInTrolley.size();
-        sleep(4000);
+        sleep(3000);
         return numberOfProductsInBasket;
     }
+
     public String trolleyTotalProductPrice() {
-        escapeKey();String trolleyTotal = trollyTotalPrice.getText().replace("£", "").replace(",", "");
+        String trolleyTotal = trollyTotalPrice.getText().replace("£", "").replace(",", "");
         return trolleyTotal;
     }
 
-    public void enterPostcodeForProductAvailability(){
-       escapeKey(); enterPostcodeForProductAvailability.sendKeys("london");    }
-    public void collectionButton(){collectionButton.click(); }
-    public void selectThisStore(){sleep(2000);escapeKey();selectThisStoreButton.get(0).click(); }
-    public void continueWithCollection(){sleep(4000);
-        new WebDriverWait(driver, 25)
-                .until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-e2e=\"continue-with-collection-button\"]")));
-                continueWithCollectionButton.click(); }
-    public void reserveAndPayInStore(){sleep(2000);escapeKey();reserveAndPayInStoreButton.click();  }
-    public void reserveDetailsEmail(){escapeKey();reserveDetailsEmail.sendKeys("check@gmail.com");}
-    public void reserveContinueButton(){
+    public void enterPostcodeForProductAvailability() {
+        enterPostcodeForProductAvailability.sendKeys("london");
+    }
+
+    public void collectionButton() {
+        collectionButton.click();
+    }
+
+    public void selectThisStore() {
+        sleep(2000);
+        selectThisStoreButton.get(0).click();
+    }
+
+    public void continueWithCollection() {
+        continueWithCollectionButton.click();
+    }
+
+    public void reserveAndPayInStore() {
+        reserveAndPayInStoreButton.click();
+    }
+
+    public void reserveDetailsEmail() {
+        reserveDetailsEmail.sendKeys("demo@gmail.com");
+    }
+
+    public void reserveContinueButton() {
         reserveContinueButton.click();
     }
-    public void reserveNowButton(){
-        reserveNowButton.click();
-    }
-    public String getReservationConfirmationMsg(){
-        String msg= reservationConfirmationMsg.getText();
-        sleep(6000);
-        return msg;
-    }
-    public String getQuantityOfReservedProdcuts(){
-        String numberOfReservedProducts = quantityReserved.getText();
-        sleep(4000);
-        return numberOfReservedProducts;
-    }
-    public String getTotalPriceOfReservedProducts(){
-        String trolleyTotal = priceOfReservedProducts.getText().replace("£", "").replace(",", "");
-        return trolleyTotal;
+
+    public String getReserverNowButtonText() {
+        return reseerveNowButton.getText();
     }
 
+    public String getQtyFromReservationPage() {
+        return checkQtyAndPrice.getText().substring(7, 8);
+    }
+
+    public String getPriceFromReservationPage() {
+        return checkQtyAndPrice.getText().substring(12, 17);
+    }
 }

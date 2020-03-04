@@ -20,5 +20,4 @@ public class Hooks {
     public void tearDown() {
         factory.closeBrowser();
     }
-
 }

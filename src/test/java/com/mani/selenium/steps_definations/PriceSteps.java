@@ -13,19 +13,18 @@ public class PriceSteps {
     @And("^Select the price \"([^\"]*)\" from price filter$")
     public void selectThePriceFromPriceFilter(String price) {
         resultsPage.selectPriceFilter(price);
-
     }
 
     @Then("^I should be able to see the products having price between \"([^\"]*)\"$")
     public void iShouldBeAbleToSeeTheProductsHavingPriceBetween(String priceRange) {
-
         List<Double> expectedPriceList = resultsPage.getAllProductPrices();
 
         String[] selectedPrice = priceRange.replace("£", "").split("-");
         double minValuePriceFilter = Double.parseDouble(selectedPrice[0]);
         double maxValuePriceFilter = Double.parseDouble(selectedPrice[1].trim());
+
         for (double indPrice : expectedPriceList) {
-            assertThat(indPrice,both(is(greaterThanOrEqualTo(minValuePriceFilter))).and(is(lessThan(maxValuePriceFilter))));
+            assertThat(indPrice, both(is(greaterThanOrEqualTo(minValuePriceFilter))).and(is(lessThan(maxValuePriceFilter))));
         }
     }
 }

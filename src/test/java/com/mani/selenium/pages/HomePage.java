@@ -14,16 +14,13 @@ public class HomePage extends DriverManager {
     @FindBy(css = "a[data-test='component-product-card-title']")
     private List<WebElement> searchedProduct;
 
-    public void doSearch(String searchTerm)  {
+    public void doSearch(String searchTerm) {
         searchBox.sendKeys(searchTerm);
         searchBox.sendKeys(Keys.ENTER);
-
-        if (searchedProduct.size()==0)
-        {
+        if (searchedProduct.size() == 0) {
             throw new RuntimeException("Sorry, we couldn't find any products with the term " + searchTerm);
         }
     }
-    
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
     }

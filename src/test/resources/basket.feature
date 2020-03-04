@@ -3,7 +3,7 @@ Feature: Basket
   As an end user
   I want to verify the basket product
   So that i can purchase the right selected product
-  @smoke
+  @rsmoke
   Scenario: Verify the product name in the basket
     Given I am on homepage
     When I search for a product of "tripods, monopods and cases"
@@ -15,7 +15,7 @@ Feature: Basket
     Given I am on homepage
     When I search for a product of "dash cam"
     And Select the random product from product list
-    And change the quantity to "4"
+    And change the quantity to "3"
     And Add the selected product to basket
     Then I should be able to see the correct price in the basket
 
@@ -39,24 +39,22 @@ Feature: Basket
     And  change the quantity to "2"
     And  Add the selected product to basket
     And  Reserve the item to collect from store
-    Then I should be able to see the reservation confirmation
-    And  The selected quantity should be "2" on reservation confirmation
+    Then I should be able to see the reserve now button
+    And  The selected quantity should be "2"
     And  The total price should be correct
+
 
   @regression @multipleFilter
   Scenario: Verify that I can reserve products using multiple filters
     Given I am on homepage
-    When  I search for a product of "laptop"
-    And  Select the brand name "hp" from the brands filter
+    When  I search for a product of "nike ball"
+    And  Select the brand name "Nike" from the brands filter
     And Select the product rating "2or more" from the rating filter
-    And  Select the price "£250 - £500" from price filter
+    And  Select the price "£5 - £10" from price filter
     And  Select the random product from product list
-    And  Verify that selected product has brand name"hp"
-    And  Verify that selected product has rating"2.0" or more
-    And  I should be able to see the products having price between "£250 - £500"
     And  change the quantity to "2"
     And  Add the selected product to basket
     And  Reserve the item to collect from store
-    Then I should be able to see the reservation confirmation
-    And  The selected quantity should be "2" on reservation confirmation
+    Then I should be able to see the reserve now button
+    And  The selected quantity should be "2"
     And  The total price should be correct

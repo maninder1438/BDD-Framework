@@ -7,9 +7,9 @@ Feature: Login
   @smoke
   Scenario: Verify account login page
     Given I am on homepage
-    When I click on account button
-    Then I should be able to see account login page
-    And the message should be visible "Do we know you?"
+    When  I click on account button
+    Then  I should be able to see account login page
+    And   the message should be visible "Do we know you?"
 
   @manual
   Scenario: Verify that the user can login with valid login credentials

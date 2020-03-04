@@ -25,7 +25,7 @@ public class LoginSteps {
 
     @When("^I enter my valid email address \"([^\"]*)\"$")
     public void iEnterMyValidEmailAddress(String email) {
-          loginPage.enterEmailAddress(email);
+        loginPage.enterEmailAddress(email);
     }
 
     @And("^I enter my valid password \"([^\"]*)\"$")
@@ -40,13 +40,12 @@ public class LoginSteps {
 
     @Then("^I should be logged in successfully & able to see my first name \"([^\"]*)\"$")
     public void iShouldBeLoggedInSuccessfullyAbleToSeeMyFirstName(String actualFirstName) {
-
         String expectedFirstName = loginPage.getFirstNameAfterLogin();
-        Assert.assertEquals(expectedFirstName,actualFirstName);
-    }
-    @And("^\"([^\"]*)\" link will be visible$")
-    public void logoutLinkVisibility(String signOutLink)  {
-        Assert.assertEquals(loginPage.signOutButton(),signOutLink);
+        Assert.assertEquals(expectedFirstName, actualFirstName);
     }
 
+    @And("^\"([^\"]*)\" link will be visible$")
+    public void logoutLinkVisibility(String signOutLink) {
+        Assert.assertEquals(loginPage.signOutButton(), signOutLink);
+    }
 }

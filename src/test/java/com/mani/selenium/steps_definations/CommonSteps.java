@@ -23,9 +23,10 @@ public class CommonSteps {
     }
 
     @When("^I click on account button$")
-    public void i_click_on_account_button(){
+    public void i_click_on_account_button() {
         loginPage.accountLoginPage();
     }
+
     @Given("^I am on account login page$")
     public void iAmOnAccountLoginPage() {
         loginPage.accountLoginPage();

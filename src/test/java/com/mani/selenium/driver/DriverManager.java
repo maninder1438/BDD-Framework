@@ -12,11 +12,9 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
 
-
     public DriverManager(){
         PageFactory.initElements(driver,this);
     }
-
 
     public static WebDriver driver;
     private String browser = "";

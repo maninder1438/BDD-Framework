@@ -6,7 +6,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.concurrent.TimeUnit;
 
 public class DriverFactory {
@@ -14,7 +13,6 @@ public class DriverFactory {
     public DriverFactory(){
         PageFactory.initElements(driver,this);
     }
-
 
     public static WebDriver driver;
     private String browser = "";

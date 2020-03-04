@@ -1,7 +1,5 @@
 package com.mani.selenium.utils;
 
-import org.junit.Test;
-
 import java.util.Random;
 
 public class Helpers {
@@ -10,5 +8,4 @@ public class Helpers {
         Random random = new Random();
         return random.nextInt(size-1);
     }
-
 }

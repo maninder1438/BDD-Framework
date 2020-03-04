@@ -1,12 +1,9 @@
 package com.mani.selenium.pages;
 
 import com.mani.selenium.driver.DriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductDescriptionPage extends DriverManager {
 
@@ -25,37 +22,44 @@ public class ProductDescriptionPage extends DriverManager {
     @FindBy(css = "li.price.product-price-primary h2")
     private WebElement priceOfProduct;
 
-    @FindBy (css = "div[data-test='heading-ratings']")
+    @FindBy(css = "div[data-test='heading-ratings']")
     private WebElement ratingOfProduct;
 
     @FindBy(css = ".product-description-content-text")
     private WebElement productDescriptionText;
 
-    public void addToTrolley() {sleep(4000);escapeKey();addToTrolleyButton.click();}
+    public void addToTrolley() {
+        sleep(2000);
+        addToTrolleyButton.click();
+    }
 
-    public void continueShopping() {sleep(5000);continueShoppingButton.click();}
+    public void continueShopping() {
+        sleep(3000);
+        continueShoppingButton.click();
+    }
 
-    public void goToTrolley() {sleep(5000);goToTrolleyButton.click();}
+    public void goToTrolley() {
+        sleep(3000);
+        goToTrolleyButton.click();
+    }
 
     public String quantityToSelect(String qty) {
-        escapeKey();
         sleep(2000);
-        new WebDriverWait(driver, 60)
-             .until(ExpectedConditions.elementToBeClickable(By.cssSelector("select[id='add-to-trolley-quantity']")));
-
         new Select(selectQuantityButton).selectByVisibleText(qty);
         return qty;
     }
-    public Double productPrice()  {
-        sleep(2000);
+
+    public Double productPrice() {
         Double price = Double.parseDouble(priceOfProduct.getText().replace("£", ""));
         return price;
     }
-    public Double getProductRating(){
+
+    public Double getProductRating() {
         Double rating = Double.parseDouble(ratingOfProduct.getAttribute("data-star-rating"));
         return rating;
     }
-    public String getProductDescriptionText(){
-           return productDescriptionText.getText().toLowerCase();
+
+    public String getProductDescriptionText() {
+        return productDescriptionText.getText().toLowerCase();
     }
 }
