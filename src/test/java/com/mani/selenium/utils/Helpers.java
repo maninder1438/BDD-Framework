@@ -1,4 +1,4 @@
-package com.mavenit.selenium.utils;
+package com.mani.selenium.utils;
 
 import org.junit.Test;
 
