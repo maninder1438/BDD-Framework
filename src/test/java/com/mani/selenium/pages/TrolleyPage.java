@@ -67,7 +67,7 @@ public class TrolleyPage extends DriverManager {
     }
 
     public void enterPostcodeForProductAvailability() {
-        enterPostcodeForProductAvailability.sendKeys("london");
+        enterPostcodeForProductAvailability.sendKeys("ub1 1qf");
     }
 
     public void collectionButton() {
