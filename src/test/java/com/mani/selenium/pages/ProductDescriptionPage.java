@@ -28,11 +28,11 @@ public class ProductDescriptionPage extends DriverManager {
     @FindBy(css = ".product-description-content-text")
     private WebElement productDescriptionText;
 
-    public void addToTrolley() {sleep(2000);addToTrolleyButton.click();}
+    public void addToTrolley() {sleep(4000);addToTrolleyButton.click();}
 
-    public void continueShopping() {sleep(3000);continueShoppingButton.click();}
+    public void continueShopping() {sleep(4000);continueShoppingButton.click();}
 
-    public void goToTrolley() {sleep(3000);goToTrolleyButton.click();}
+    public void goToTrolley() {sleep(4000);goToTrolleyButton.click();}
 
     public String quantityToSelect(String qty) {
         sleep(4000);
