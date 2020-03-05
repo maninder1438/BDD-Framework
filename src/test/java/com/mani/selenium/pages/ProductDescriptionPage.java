@@ -30,9 +30,9 @@ public class ProductDescriptionPage extends DriverManager {
 
     public void addToTrolley() {sleep(4000);addToTrolleyButton.click();}
 
-    public void continueShopping() {sleep(4000);continueShoppingButton.click();}
+    public void continueShopping() {sleep(6000);continueShoppingButton.click();}
 
-    public void goToTrolley() {sleep(4000);goToTrolleyButton.click();}
+    public void goToTrolley() {sleep(6000);goToTrolleyButton.click();}
 
     public String quantityToSelect(String qty) {
         sleep(4000);

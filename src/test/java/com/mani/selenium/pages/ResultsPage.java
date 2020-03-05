@@ -125,6 +125,7 @@ public class ResultsPage extends DriverManager {
     public void selectBrandFilter(String selectBrand) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
+        sleep(4000);
         for (WebElement review : brandFilter) {
             String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectBrand)) {
