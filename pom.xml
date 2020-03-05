@@ -7,7 +7,7 @@
   <artifactId>argos-bdd</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>argos-bdd</name>
-  <!-- FIXME change it to the project's website -->
+  <!-- project name-->
   <url>http://www.example.com</url>
 
   <properties>
