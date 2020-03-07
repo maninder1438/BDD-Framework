@@ -30,7 +30,7 @@ public class ProductDescriptionPage extends DriverManager {
 
     public void addToTrolley() {sleep(4000);addToTrolleyButton.click();}
 
-    public void continueShopping() {sleep(6000);continueShoppingButton.click();}
+    public void continueShopping() {sleep(8000);continueShoppingButton.click();}
 
     public void goToTrolley() {sleep(6000);goToTrolleyButton.click();}
 
