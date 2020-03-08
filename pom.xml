@@ -78,9 +78,7 @@
               <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
               <format>json,html</format>
 
-              <tags>"@basket"</tags>
-              <tags>"@filter"</tags>
-              <tags>"@search"</tags>
+              <tags>"@regression"</tags>
               <tags>"@smoke"</tags>
 
             </configuration>

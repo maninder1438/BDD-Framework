@@ -3,7 +3,7 @@ Feature: Basket
   As an end user
   I want to verify the basket product
   So that i can purchase the right selected product
-  @rsmoke
+  @smoke
   Scenario: Verify the product name in the basket
     Given I am on homepage
     When I search for a product of "tripods, monopods and cases"
