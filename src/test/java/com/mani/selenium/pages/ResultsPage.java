@@ -39,6 +39,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<String> getAllProductNames() {
+        sleep(2000);
         List<String> productNamesList = new ArrayList<>();
         for (WebElement indProduct : productNameList) {
             String actual = indProduct.getText();
@@ -59,6 +60,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductPrices() {
+        sleep(2000);
 
         List<Double> productPriceList = new ArrayList<>();
 
@@ -119,7 +121,7 @@ public class ResultsPage extends DriverManager {
                 break;
             }
         }
-          sleep(2000);
+          sleep(3000);
     }
 
     public void selectBrandFilter(String selectBrand) {
