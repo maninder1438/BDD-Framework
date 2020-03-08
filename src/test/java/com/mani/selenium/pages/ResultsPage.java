@@ -82,7 +82,7 @@ public class ResultsPage extends DriverManager {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
 
-        sleep(2000);
+        sleep(4000);
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
             if (availableFilter.equalsIgnoreCase(selectRating)) {
@@ -111,7 +111,7 @@ public class ResultsPage extends DriverManager {
           } catch (Exception e) {
               e.printStackTrace();
           }
-        sleep(2000);
+        sleep(4000);
         for (WebElement review : priceFilter) {
            String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectPrice)) {
@@ -125,7 +125,7 @@ public class ResultsPage extends DriverManager {
     public void selectBrandFilter(String selectBrand) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-        sleep(2000);
+        sleep(4000);
         for (WebElement review : brandFilter) {
             String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectBrand)) {
