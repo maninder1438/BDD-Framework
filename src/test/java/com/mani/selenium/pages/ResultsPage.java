@@ -48,7 +48,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductRatings() {
-        sleep(5000);
+        sleep(2000);
         List<Double> productRatingList = new ArrayList<>();
         for (WebElement rating : ratingStar) {
             String currentRatingInString = rating.getAttribute("data-star-rating");
@@ -82,7 +82,7 @@ public class ResultsPage extends DriverManager {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
 
-        sleep(3000);
+        sleep(2000);
         for (WebElement review : ratingWebElements) {
             String availableFilter = review.getText();
             if (availableFilter.equalsIgnoreCase(selectRating)) {
@@ -111,29 +111,31 @@ public class ResultsPage extends DriverManager {
           } catch (Exception e) {
               e.printStackTrace();
           }
-        sleep(3000);
+        sleep(2000);
         for (WebElement review : priceFilter) {
            String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectPrice)) {
                 review.click();
-                sleep(5000);
                 break;
             }
         }
+          sleep(2000);
     }
 
     public void selectBrandFilter(String selectBrand) {
 //        new WebDriverWait(driver, 10)
 //                .until(ExpectedConditions.numberOfElementsToBeMoreThan(By.cssSelector(".findability-facet__rating-label"), 5));
-        sleep(4000);
+        sleep(2000);
         for (WebElement review : brandFilter) {
             String availableFilter = review.getAttribute("value");
             if (availableFilter.equalsIgnoreCase(selectBrand)) {
                 review.click();
-                sleep(5000);
+
                 break;
             }
         }
+        sleep(2000);
+
     }
 
 

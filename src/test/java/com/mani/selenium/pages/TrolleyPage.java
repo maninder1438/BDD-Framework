@@ -50,7 +50,7 @@ public class TrolleyPage extends DriverManager {
 
 
     public String getProductNameInTrolley() {
-        sleep(3000);
+        sleep(1000);
          return nameInTrolley.getText();
     }
 
@@ -60,7 +60,7 @@ public class TrolleyPage extends DriverManager {
 
     public int numberOfProductsinTrolley() {
         int numberOfProductsInBasket = numberOfProductsInTrolley.size();
-        sleep(3000);
+        sleep(1000);
         return numberOfProductsInBasket;
     }
     public String trolleyTotalProductPrice() {
@@ -76,7 +76,7 @@ public class TrolleyPage extends DriverManager {
         collectionButton.click();
     }
 
-    public void selectThisStore(){sleep(2000);selectThisStoreButton.get(0).click(); }
+    public void selectThisStore(){sleep(1000);selectThisStoreButton.get(0).click(); }
 
     public void continueWithCollection(){
         continueWithCollectionButton.click();

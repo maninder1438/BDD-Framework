@@ -31,15 +31,13 @@ public class LoginPage extends DriverManager {
     private WebElement signOutButton;
 
     public String accountLoginPage() {
-        sleep(2000);
         accountButton.click();
         String url = driver.getCurrentUrl();
         return url;
     }
 
     public String accountLoginPageMessageBeforeLogin(){
-        sleep(3000);
-        String message = accountPageTitleMessageBeforeLogin.getText();
+         String message = accountPageTitleMessageBeforeLogin.getText();
         return message;
     }
     public String accountLoginPageMessageAfterLogin(){
@@ -47,14 +45,13 @@ public class LoginPage extends DriverManager {
         return message;
     }
     public void enterEmailAddress(String email){
-        sleep(3000);
-        emailBox.sendKeys(email);
+         emailBox.sendKeys(email);
      }
     public void enterPassword(String password){
         passwordBox.sendKeys(password);
     }
     public void signInSecurely() {
-        sleep(4000);
+        sleep(3000);
         signInButton.click();
     }
     public String getFirstNameAfterLogin() {
