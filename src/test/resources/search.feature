@@ -20,7 +20,7 @@ Feature: Search
       |     searchItem  |
       |      puma       |
       |     adidas      |
-      |    smart watch  |
+
 
 
 

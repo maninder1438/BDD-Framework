@@ -6,14 +6,14 @@ Feature: Basket
   @smoke
   Scenario: Verify the product name in the basket
     Given I am on homepage
-    When I search for a product of "tripods, monopods and cases"
+    When I search for a product of "nike"
     And Select the random product from product list
     And Add the selected product to basket
     Then I should be able to see the same selected product in the basket
   @smoke
   Scenario: Verify the price updated accurately for a single product but multiple quantity in the basket
     Given I am on homepage
-    When I search for a product of "dash cam"
+    When I search for a product of "football"
     And Select the random product from product list
     And change the quantity to "2"
     And Add the selected product to basket
@@ -22,10 +22,10 @@ Feature: Basket
   @regression
   Scenario: Verify the price & quantity in the basket when buying multiple products
     Given I am on homepage
-    When I search for a product of "ipad pro"
+    When I search for a product of "nike"
     And Select the random product from product list
     And add the selected product to basket and click continue shopping
-    And I search for a product of "hard drive"
+    And I search for a product of "football"
     And Select the random product from product list
     And add the selected product to basket and click goto trolley
     Then I should be able to see "2" products in total in the basket
@@ -34,7 +34,7 @@ Feature: Basket
   @regression
   Scenario: Verify that I can reserve products
     Given I am on homepage
-    When  I search for a product of "phone cover"
+    When  I search for a product of "football"
     And  Select the random product from product list
     And  change the quantity to "2"
     And  Add the selected product to basket

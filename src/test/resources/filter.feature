@@ -22,8 +22,8 @@ Feature: Filter
   Scenario: Verify product brand filter
     Given I am on homepage
     When I search for a product of "laptop"
-    And  Select the brand name "apple" from the brands filter
-    Then I should be able to see "apple" brand products only
+    And  Select the brand name "HP" from the brands filter
+    Then I should be able to see "HP" brand products only
 
   @smoke
   Scenario: Verify product rating filter & price filter
