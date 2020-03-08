@@ -77,13 +77,13 @@
               <featuresDirectory>src/test/resources</featuresDirectory>
               <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
               <format>json,html</format>
-              <tags>
-                <tag>@basket</tag>
-                <tag>@filter</tag>
-                <tag>@search</tag>
-                <tag>@smoke</tag>
-                <tag>~@ignore</tag>
-              </tags>
+
+                <tags>@basket</tags>
+                <tags>@filter</tags>
+                <tags>@search</tags>
+                <tags>@smoke</tags>
+                 <tags>"~@ignored"</tags>
+
             </configuration>
           </execution>
         </executions>
