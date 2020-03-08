@@ -15,7 +15,7 @@ Feature: Basket
     Given I am on homepage
     When I search for a product of "dash cam"
     And Select the random product from product list
-    And change the quantity to "4"
+    And change the quantity to "2"
     And Add the selected product to basket
     Then I should be able to see the correct price in the basket
 
