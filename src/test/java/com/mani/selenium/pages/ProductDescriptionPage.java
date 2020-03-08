@@ -35,7 +35,7 @@ public class ProductDescriptionPage extends DriverManager {
     public void goToTrolley() {sleep(6000);goToTrolleyButton.click();}
 
     public String quantityToSelect(String qty) {
-
+        sleep(4000);
         new Select(selectQuantityButton).selectByVisibleText(qty);
         return qty;
     }
