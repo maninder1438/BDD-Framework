@@ -78,8 +78,9 @@
               <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
               <format>json,html</format>
 
-              <tags>"@regression"</tags>
-              <tags>"@smoke"</tags>
+
+              <tags>"~@ignored"</tags>
+
 
             </configuration>
           </execution>
