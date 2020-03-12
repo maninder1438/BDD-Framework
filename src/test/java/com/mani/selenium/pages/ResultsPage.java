@@ -60,7 +60,7 @@ public class ResultsPage extends DriverManager {
     }
 
     public List<Double> getAllProductPrices() {
-        sleep(2000);
+        sleep(3000);
 
         List<Double> productPriceList = new ArrayList<>();
 
